@@ -1,29 +1,9 @@
-{{-- <form class="w-50 h-75 d-flex flex-column align-items-center shadow-sm p-3 bg-white rounded">
+{{-- 
+<div class="container w-100 h-100 d-flex justify-content-center align-items-center">
 
-    <div class="apresentacao">
-        <h3>Bem vindo</h3>
-    </div>
+        @include('layoutLlogin')
 
-    <div class="form-group w-50 m-2 mt-5">
-        <label for="login" class="mb-1">Login de Acesso</label>
-        <input type="email" class="form-control" id="login" aria-describedby="loginHelp"
-            placeholder="Login">
-    </div>
-
-    <div class="form-group w-50 m-2">
-        <label for="senha" class="mb-1">Senha</label>
-        <input type="password" class="form-control" id="senha" placeholder="Senha">
-    </div>
-
-    <div class="form-group form-check w-50">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Clique em mim</label>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Enviar</button>
-
-</form>
- --}}
+</div> --}}
 
 <style>
     .login-container {
@@ -68,7 +48,7 @@
             <input type="password" class="form-control" name="password" placeholder="Digite sua senha" required>
         </div>
         
-        <button type="submit" class="btn btn-primary w-100 mt-5">Entrar <i class="fas fa-sign-in-alt"></i></button>
+        <button type="submit" class="btn btn-primary w-100 mt-3">Entrar <i class="fas fa-sign-in-alt"></i></button>
     </form>
     
     <p class="mt-3"><a href="" class="text-decoration-none">Esqueceu sua senha?</a></p>

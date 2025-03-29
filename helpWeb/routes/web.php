@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/help', function () {
     return view('help');
 });
+
+Route::get('/recuperaLogin', function () {
+    return view('recuperaLogin');
+});

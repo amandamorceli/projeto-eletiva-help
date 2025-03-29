@@ -12,10 +12,10 @@
 
 <body style="height: 100vh; background: linear-gradient(166deg, #70377e,#a474af, #d5c5d8)">
 
-    <div class="container w-100 h-100 d-flex justify-content-center align-items-center">
+    <div class="d-flex">
 
-        @include('login')
-
+        @include('menuTecnico') 
+        
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
