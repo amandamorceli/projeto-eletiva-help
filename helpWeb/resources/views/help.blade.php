@@ -15,6 +15,10 @@
     <div class="d-flex">
 
         @include('menuTecnico') 
+
+        {{-- @include('iframesConsulta') --}}
+
+        @include('iframeFormularios')
         
     </div>
 
