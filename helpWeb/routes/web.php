@@ -17,6 +17,6 @@ Route::get('/help', function () {
     return view('help');
 });
 
-Route::get('/recuperaLogin', function () {
-    return view('recuperaLogin');
+Route::get('/login', function () {
+    return view('login');
 });
