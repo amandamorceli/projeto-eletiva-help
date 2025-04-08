@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('c_nome_resumido');
             $table->string('c_cpf_cnpj');
             $table->string('c_rg');
-            $table->integer('f_tipo_fj');
+            $table->string('f_tipo_fj');
+            $table->string('c_tipo_usuario');
             $table->integer('n_cep');
             $table->string('c_endereco');
             $table->string('c_numero_endereco');
