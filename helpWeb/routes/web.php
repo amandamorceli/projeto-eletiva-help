@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
+use App\Models\Chamado;
+use App\Http\Controllers\ChamadosController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +17,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::get('/help', function () {
     return view('help');
 });
 
-Route::get('/recuperaLogin', function () {
-    return view('recuperaLogin');
-});
+Route::resource('chamados', ChamadosController::class);
+
+Route::resource('usuarios', UsersController::class);
