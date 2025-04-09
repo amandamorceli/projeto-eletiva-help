@@ -19,6 +19,7 @@ class Chamado extends Model
         'f_categoria',
         'n_cod_usuario_inc',
         'n_cod_usuario_alt',
+        'd_inclusao'
     ];
 
     public function tecnico()

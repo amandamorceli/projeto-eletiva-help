@@ -15,7 +15,7 @@ class UsersController extends Controller
     public function index()
     {
         $usuarios = User::get();
-        return view('users.index', compact('usuarios'));
+        return view('menu.usuarios.index', compact('usuarios'));
     }
 
     /**
@@ -23,7 +23,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view("users.create");
+        return view("menu.usuarios.create");
     }
 
     /**
@@ -33,14 +33,14 @@ class UsersController extends Controller
     {
         try {
             User::create($request->all());
-            return redirect()->route('users.index')->with('sucesso', 'Usuário criado com sucesso!');
+            return redirect()->route('menu.usuarios.index')->with('sucesso', 'Usuário criado com sucesso!');
 
         } catch (Exception $e) {
             Log::error("Erro ao criar o usuário: ".$e->getMessage(), [
             'stack' => $e->getTraceAsString(),
             'request' => $request->all() 
         ]);
-        return redirect()->route('users.index')->with('erro', 'Erro ao criar o usuário!');
+        return redirect()->route('menu.usuarios.index')->with('erro', 'Erro ao criar o usuário!');
         }
     }
 
@@ -50,7 +50,7 @@ class UsersController extends Controller
     public function show(string $id)
     {
         $usuario = User::findOrFail($id);
-        return view("users.show", compact('usuario'));
+        return view("menu.usuarios.show", compact('usuario'));
     }
 
     /**
@@ -59,7 +59,7 @@ class UsersController extends Controller
     public function edit(string $id)
     {
         $usuario = User::findOrFail($id);
-        return view("users.edit", compact('usuario'));
+        return view("menu.usuarios.edit", compact('usuario'));
     }
 
     /**

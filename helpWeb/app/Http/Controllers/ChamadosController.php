@@ -16,7 +16,7 @@ class ChamadosController extends Controller
     public function index()
     {
         $chamados = Chamado::with(['tecnico', 'solicitante', 'categoriaDoChamado'])->get();
-        return view('chamados.index', compact('chamados'));
+        return view('menu.chamados.index', compact('chamados'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ChamadosController extends Controller
     public function create()
     {
         $categorias = Categoria::all();
-        return view("chamados.create", compact("categorias"));
+        return view("menu.chamados.create", compact("categorias"));
     }
 
     /**
@@ -35,14 +35,14 @@ class ChamadosController extends Controller
     {
         try {
             Chamado::create($request->all());
-            return redirect()->route('chamados.index')->with('sucesso', 'Chamado criado com sucesso!');
+            return redirect()->route('menu.chamados.index')->with('sucesso', 'Chamado criado com sucesso!');
 
         } catch (Exception $e) {
             Log::error("Erro ao criar o chamado: ".$e->getMessage(), [
             'stack' => $e->getTraceAsString(),
             'request' => $request->all() 
         ]);
-        return redirect()->route('chamados.index')->with('erro', 'Erro ao criar o chamado!');
+        return redirect()->route('menu.chamados.index')->with('erro', 'Erro ao criar o chamado!');
         }
     }
 
@@ -53,7 +53,7 @@ class ChamadosController extends Controller
     {
         $chamados = Chamado::findOrFail($id);
         $categorias = Categoria::all();
-        return view("chamados.show", compact('chamados', 'categorias'));
+        return view("menu.chamados.show", compact('chamados', 'categorias'));
     }
 
     /**
@@ -63,7 +63,7 @@ class ChamadosController extends Controller
     {
         $chamado = Chamado::findOrFail($id);
         $categorias = Categoria::all();
-        return view("chamados.edit", compact('chamado', 'categorias'));
+        return view("menu.chamados.edit", compact('chamado', 'categorias'));
     }
 
     /**
@@ -74,7 +74,7 @@ class ChamadosController extends Controller
         try {
             $chamado = Chamado::findOrFail($id);
             $chamado->update($request->all());
-            return redirect()->route('chamados.index')->with('sucesso', 'Chamado alterado com sucesso!');
+            return redirect()->route('menu.chamados.index')->with('sucesso', 'Chamado alterado com sucesso!');
             
         } catch (Exception $e) {
             Log::error("Erro ao atualizar o chamado:".$e->getMessage(), [
@@ -82,7 +82,7 @@ class ChamadosController extends Controller
                 'chamado_id' => $id,
                 'request' => $request->all() 
             ]);
-            return redirect()->route('chamados.index')->with('erro', 'Erro ao alterar o chamado!');
+            return redirect()->route('menu.chamados.index')->with('erro', 'Erro ao alterar o chamado!');
         }
     }
 
@@ -94,14 +94,14 @@ class ChamadosController extends Controller
         try {
             $chamado = Chamado::findOrFail($id);
             $chamado->delete();
-            return redirect()->route('chamados.index')->with('sucesso', 'Chamado excluído com sucesso!');
+            return redirect()->route('menu.chamados.index')->with('sucesso', 'Chamado excluído com sucesso!');
             
         } catch (Exception $e) {
             Log::error("Erro ao excluir o chamado:".$e->getMessage(), [
                 'stack' => $e->getTraceAsString(),
                 'chamado_id' => $id 
             ]);
-            return redirect()->route('chamados.index')->with('erro', 'Erro ao excluir o chamado!');
+            return redirect()->route('menu.chamados.index')->with('erro', 'Erro ao excluir o chamado!');
         }
     }
 }

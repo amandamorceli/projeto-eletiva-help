@@ -1,3 +1,5 @@
+@extends('help')
+
 <style>
 
     input[type='text'],
@@ -13,20 +15,19 @@
     }
 
     .btn-envia{
-        background-color: #4e59dd;
-        color: #fff;
-        transition: all ease-in-out 0.3s;
+        background-color: #4e59dd !important;
+        color: #fff !important;
+        transition: all ease-in-out 0.3s !important;
 
         &:hover{
-            background-color: #2e347b;
-            color: #fff;
+            background-color: #2e347b !important;
+            color: #fff !important;
         }
     }
 
 </style>
 
-
-<div class="container m-4 w-100 p-5" style="max-width: 100% !important">
+@section('conteudo')
 
     <div class="form-container">
 
@@ -104,4 +105,4 @@
         </form>
     </div>
     
-</div>
+@endsection
