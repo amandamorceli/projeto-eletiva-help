@@ -82,7 +82,7 @@
         <h6 class="text-uppercase text-secondary">Usuários</h6>
         <ul class="nav nav-pills flex-column">
             <li>
-                <a href="#" class="nav-link text-white">
+                <a href="/usuarios/create" class="nav-link text-white">
                     <i class="fas fa-user-plus"></i> Inserir Usuário
                 </a>
             </li>
