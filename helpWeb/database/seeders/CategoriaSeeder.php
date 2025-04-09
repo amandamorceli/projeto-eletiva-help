@@ -14,10 +14,10 @@ class CategoriaSeeder extends Seeder
     public function run(): void
     {
         //
-        Categoria::create(['nome'=>'Categoria 1']);
-        Categoria::create(['nome'=>'Categoria 2']);
-        Categoria::create(['nome'=>'Categoria 3']);
-        Categoria::create(['nome'=>'Categoria 4']);
-        Categoria::create(['nome'=>'Categoria 5']);
+        Categoria::create(['nome' => 'Hardware']);
+        Categoria::create(['nome' => 'Software']);
+        Categoria::create(['nome' => 'Impressoras']);
+        Categoria::create(['nome' => 'Atendimento']);
+        Categoria::create(['nome' => 'Rede']);
     }
 }

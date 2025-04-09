@@ -18,7 +18,7 @@ use App\Http\Controllers\UsersController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('help');
 });
 
 Route::get('/help', function () {
@@ -28,3 +28,7 @@ Route::get('/help', function () {
 Route::resource('chamados', ChamadosController::class);
 
 Route::resource('usuarios', UsersController::class);
+
+Route::get('/chamados/show', function () {
+    return view('menu.chamados.show');
+});

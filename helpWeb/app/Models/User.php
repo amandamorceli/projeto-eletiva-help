@@ -25,7 +25,7 @@ class User extends Authenticatable
         'c_cpf_cnpj',
         'c_rg',
         'f_tipo_fj',
-        'f_tipo_usuario',
+        'b_tipo_usuario',
         'n_cep',
         'c_endereco',
         'c_numero_endereco',
@@ -56,7 +56,7 @@ class User extends Authenticatable
     protected $casts = [
         'd_inicio' => 'datetime',
         'd_fim' => 'datetime',
-        'd_inclusao'=>'datetime',
+        'd_inclusao' => 'datetime',
         'c_senha' => 'hashed',
     ];
 }

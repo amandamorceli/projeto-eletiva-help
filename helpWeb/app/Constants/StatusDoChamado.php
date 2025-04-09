@@ -2,7 +2,7 @@
 
 namespace App\Constants;
 
-enum StatusChamado: int
+enum StatusDoChamado: int
 {
     case Criado = 1;
     case Em_Atendimento = 2;

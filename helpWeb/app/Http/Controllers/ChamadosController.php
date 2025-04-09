@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Chamado;
-use App\Models\Categoria;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Models\Chamado;
+use App\Models\Categoria;
+use App\Models\User;
+use App\Constants\StatusDoChamado;
 
 class ChamadosController extends Controller
 {
@@ -25,7 +27,10 @@ class ChamadosController extends Controller
     public function create()
     {
         $categorias = Categoria::all();
-        return view("menu.chamados.create", compact("categorias"));
+        $tecnicos = User::where('b_tipo_usuario', 'true')->get();
+        $solicitantes = User::all();
+        $statusDoChamado = StatusDoChamado::cases();
+        return view("menu.chamados.create", compact("categorias", 'tecnicos', 'solicitantes', 'statusDoChamado'));
     }
 
     /**
@@ -35,14 +40,13 @@ class ChamadosController extends Controller
     {
         try {
             Chamado::create($request->all());
-            return redirect()->route('menu.chamados.index')->with('sucesso', 'Chamado criado com sucesso!');
-
+            return redirect()->route('chamados.index')->with('sucesso', 'Chamado criado com sucesso!');
         } catch (Exception $e) {
-            Log::error("Erro ao criar o chamado: ".$e->getMessage(), [
-            'stack' => $e->getTraceAsString(),
-            'request' => $request->all() 
-        ]);
-        return redirect()->route('menu.chamados.index')->with('erro', 'Erro ao criar o chamado!');
+            Log::error("Erro ao criar o chamado: " . $e->getMessage(), [
+                'stack' => $e->getTraceAsString(),
+                'request' => $request->all()
+            ]);
+            return redirect()->route('chamados.index')->with('erro', 'Erro ao criar o chamado!');
         }
     }
 
@@ -63,7 +67,10 @@ class ChamadosController extends Controller
     {
         $chamado = Chamado::findOrFail($id);
         $categorias = Categoria::all();
-        return view("menu.chamados.edit", compact('chamado', 'categorias'));
+        $tecnicos = User::where('b_tipo_usuario', 'true')->get();
+        $solicitantes = User::all();
+        $statusDoChamado = StatusDoChamado::cases();
+        return view("menu.chamados.edit", compact('chamado', 'categorias', 'tecnicos', 'solicitantes', 'statusDoChamado'));
     }
 
     /**
@@ -74,15 +81,14 @@ class ChamadosController extends Controller
         try {
             $chamado = Chamado::findOrFail($id);
             $chamado->update($request->all());
-            return redirect()->route('menu.chamados.index')->with('sucesso', 'Chamado alterado com sucesso!');
-            
+            return redirect()->route('chamados.index')->with('sucesso', 'Chamado alterado com sucesso!');
         } catch (Exception $e) {
-            Log::error("Erro ao atualizar o chamado:".$e->getMessage(), [
+            Log::error("Erro ao atualizar o chamado:" . $e->getMessage(), [
                 'stack' => $e->getTraceAsString(),
                 'chamado_id' => $id,
-                'request' => $request->all() 
+                'request' => $request->all()
             ]);
-            return redirect()->route('menu.chamados.index')->with('erro', 'Erro ao alterar o chamado!');
+            return redirect()->route('chamados.index')->with('erro', 'Erro ao alterar o chamado!');
         }
     }
 
@@ -94,14 +100,13 @@ class ChamadosController extends Controller
         try {
             $chamado = Chamado::findOrFail($id);
             $chamado->delete();
-            return redirect()->route('menu.chamados.index')->with('sucesso', 'Chamado excluído com sucesso!');
-            
+            return redirect()->route('chamados.index')->with('sucesso', 'Chamado excluído com sucesso!');
         } catch (Exception $e) {
-            Log::error("Erro ao excluir o chamado:".$e->getMessage(), [
+            Log::error("Erro ao excluir o chamado:" . $e->getMessage(), [
                 'stack' => $e->getTraceAsString(),
-                'chamado_id' => $id 
+                'chamado_id' => $id
             ]);
-            return redirect()->route('menu.chamados.index')->with('erro', 'Erro ao excluir o chamado!');
+            return redirect()->route('chamados.index')->with('erro', 'Erro ao excluir o chamado!');
         }
     }
 }
