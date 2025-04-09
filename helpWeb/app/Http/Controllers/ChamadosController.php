@@ -27,7 +27,7 @@ class ChamadosController extends Controller
     public function create()
     {
         $categorias = Categoria::all();
-        $tecnicos = User::where('b_tipo_usuario', 'true')->get();
+        $tecnicos = User::where('f_tipo_usuario', 'tecnico')->get();
         $solicitantes = User::all();
         $statusDoChamado = StatusDoChamado::cases();
         return view("menu.chamados.create", compact("categorias", 'tecnicos', 'solicitantes', 'statusDoChamado'));

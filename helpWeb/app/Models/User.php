@@ -25,7 +25,7 @@ class User extends Authenticatable
         'c_cpf_cnpj',
         'c_rg',
         'f_tipo_fj',
-        'b_tipo_usuario',
+        'f_tipo_usuario',
         'n_cep',
         'c_endereco',
         'c_numero_endereco',
