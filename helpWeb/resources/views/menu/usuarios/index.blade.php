@@ -24,6 +24,7 @@
                 <th>Tipo Usuário</th>
                 <th>Data Início</th>
                 <th>Data Inclusão</th>
+                <th>&nbsp</th>
             </tr>
         </thead>
         <tbody>
@@ -31,17 +32,30 @@
             @foreach($usuarios as $u)
 
             <tr>
-                <td><i class='fas fa-edit'></i></td>
+                <td><a href="/usuarios/{{ $u->id }}/edit"><i class='fas fa-edit'></i></a></td>
                 <td>{{ $u->c_login}}</td>
                 <td>{{ $u->c_nome_resumido}}</td>
                 <td>{{ $u->f_tipo_usuario}}</td>
                 <td>{{ $u->d_inicio}}</td>
                 <td>{{ $u->d_inclusao}}</td>
+                <td><a href="/usuarios/{{ $u->id }}"><i class='fas fa-eye'></i></a></td>
             </tr>
 
             @endforeach
             
         </tbody>
     </table>
+
+    @if(session('erro'))
+    <div class="alert alert-danger">
+        {{ session('erro') }}
+    </div>
+    @endif
+
+    @if(session('sucesso'))
+    <div class="alert alert-success">
+        {{ session('sucesso') }}
+    </div>
+    @endif
 </div>
 @endsection

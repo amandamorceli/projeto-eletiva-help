@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('c_login')->unique();
-            $table->string('c_senha');
+            $table->string('c_senha')->nullable();
             $table->string('c_nome_completo');
             $table->string('c_nome_resumido');
             $table->string('c_cpf_cnpj');
             $table->string('c_rg');
             $table->string('f_tipo_fj');
-            $table->string('c_tipo_usuario');
+            $table->string('f_tipo_usuario');
             $table->integer('n_cep');
             $table->string('c_endereco');
             $table->string('c_numero_endereco');
@@ -30,7 +30,7 @@ return new class extends Migration
             $table->dateTime('d_inicio')->nullable();
             $table->dateTime('d_fim')->nullable();    
             $table->integer('n_cod_usuario_inc');
-            $table->dateTime('d_inclusao');
+            $table->dateTime('d_inclusao')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

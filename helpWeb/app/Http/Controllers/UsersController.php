@@ -32,15 +32,22 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         try {
-            User::create($request->all());
-            return redirect()->route('menu.usuarios.index')->with('sucesso', 'Usuário criado com sucesso!');
+
+            $dados = $request->all();
+            $dados['d_inclusao'] = now();
+            $dados['d_inicio'] = now();
+            $dados['c_login'] = now()->format('Y-m-d_H:i:s') . '_' . rand(1000, 9999);
+
+            User::create($dados);
+            
+            return redirect()->route('usuarios.index')->with('sucesso', 'Usuário criado com sucesso!');
 
         } catch (Exception $e) {
             Log::error("Erro ao criar o usuário: ".$e->getMessage(), [
             'stack' => $e->getTraceAsString(),
             'request' => $request->all() 
         ]);
-        return redirect()->route('menu.usuarios.index')->with('erro', 'Erro ao criar o usuário!');
+        return redirect()->route('usuarios.index')->with('erro', 'Erro ao criar o usuário!');
         }
     }
 
@@ -59,6 +66,7 @@ class UsersController extends Controller
     public function edit(string $id)
     {
         $usuario = User::findOrFail($id);
+
         return view("menu.usuarios.edit", compact('usuario'));
     }
 
@@ -70,7 +78,7 @@ class UsersController extends Controller
         try {
             $usuario = User::findOrFail($id);
             $usuario->update($request->all());
-            return redirect()->route('menu.usuarios.index')->with('sucesso', 'Usuário alterado com sucesso!');
+            return redirect()->route('usuarios.index')->with('sucesso', 'Usuário alterado com sucesso!');
             
         } catch (Exception $e) {
             Log::error("Erro ao atualizar o usuário:".$e->getMessage(), [
@@ -78,7 +86,7 @@ class UsersController extends Controller
                 'usuario_id' => $id,
                 'request' => $request->all() 
             ]);
-            return redirect()->route('menu.usuarios.index')->with('erro', 'Erro ao alterar o usuário!');
+            return redirect()->route('usuarios.index')->with('erro', 'Erro ao alterar o usuário!');
         }
     }
 
@@ -90,14 +98,14 @@ class UsersController extends Controller
         try {
             $usuario = User::findOrFail($id);
             $usuario->delete();
-            return redirect()->route('menu.usuarios.index')->with('sucesso', 'Usuário excluído com sucesso!');
+            return redirect()->route('usuarios.index')->with('sucesso', 'Usuário excluído com sucesso!');
             
         } catch (Exception $e) {
             Log::error("Erro ao excluir o usuário:".$e->getMessage(), [
                 'stack' => $e->getTraceAsString(),
                 'usuario_id' => $id 
             ]);
-            return redirect()->route('menu.usuarios.index')->with('erro', 'Erro ao excluir o usuário!');
+            return redirect()->route('usuarios.index')->with('erro', 'Erro ao excluir o usuário!');
         }
     }
 }

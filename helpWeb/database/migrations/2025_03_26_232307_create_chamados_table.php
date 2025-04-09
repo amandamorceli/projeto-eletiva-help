@@ -22,10 +22,10 @@ return new class extends Migration
             $table->integer('f_status')->default(1);
             $table->unsignedBigInteger('n_categoria')->nullable();
             $table->foreign('n_categoria')->references('id')->on('categorias')->onDelete('restrict');
-            // $table->unsignedBigInteger('n_cod_usuario_inc');
-            // $table->foreign('n_cod_usuario_inc')->references('id')->on('users')->onDelete('restrict');
-            // $table->unsignedBigInteger('n_cod_usuario_alt');
-            // $table->foreign('n_cod_usuario_alt')->references('id')->on('users')->onDelete('restrict');
+            $table->unsignedBigInteger('n_cod_usuario_inc');
+            $table->foreign('n_cod_usuario_inc')->references('id')->on('users')->onDelete('restrict');
+            $table->unsignedBigInteger('n_cod_usuario_alt');
+            $table->foreign('n_cod_usuario_alt')->references('id')->on('users')->onDelete('restrict');
             $table->timestamps();
         });
     }

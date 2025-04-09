@@ -17,9 +17,9 @@ class Chamado extends Model
         'descricao',
         'f_status',
         'f_categoria',
-        // 'n_cod_usuario_inc',
-        // 'n_cod_usuario_alt',
-        // 'd_inclusao'
+        'n_cod_usuario_inc',
+        'n_cod_usuario_alt',
+        'd_inclusao'
     ];
 
     public function tecnico()
@@ -32,15 +32,15 @@ class Chamado extends Model
         return $this->belongsTo(User::class, 'n_cod_solicitante');
     }
 
-    // public function usuarioInclusao()
-    // {
-    //     return $this->belongsTo(User::class, 'n_cod_usuario_inc');
-    // }
+    public function usuarioInclusao()
+    {
+        return $this->belongsTo(User::class, 'n_cod_usuario_inc');
+    }
 
-    // public function usuarioAlteracao()
-    // {
-    //     return $this->belongsTo(User::class, 'n_cod_usuario_alt');
-    // }
+    public function usuarioAlteracao()
+    {
+        return $this->belongsTo(User::class, 'n_cod_usuario_alt');
+    }
 
     public function categoriaDoChamado()
     {

@@ -29,18 +29,6 @@
         </thead>
         <tbody>
 
-            <tr>
-                <td><a href=""><i class='fas fa-edit'></i></a></td>
-                <td>Erro na impressão</td>
-                <td>Impressão manchada</td>
-                <td>Maria do Financeiro</td>
-                <td>João da impressora</td>
-                <td>Impressoras</td>
-                <td><span class="badge bg-warning text-dark">Criado</span></td>
-                <td>08/04/25</td>
-                <td><a href=""><i class="fa-solid fa-eye"></i></a></td>
-            </tr>
-
             @foreach($chamados as $c)
 
             <tr>
