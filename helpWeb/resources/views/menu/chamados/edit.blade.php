@@ -29,89 +29,95 @@
 
 <div class="form-container">
 
-    <h3 class="text-left text-dark ms-3">📄 Novo Chamado</h3>
+    <h3 class="text-left text-dark ms-3">📄 Atualização Chamado</h3>
 
     <hr>
 
-    <form method="POST" class="mt-4" style="display: flex; flex-wrap: wrap; justify-content: space-around;" action="/chamados/{{ $chamado->id }">
+    <form method="POST" class="mt-4" style="display: flex; flex-wrap: wrap; justify-content: space-around;" action="/chamados/{{ $chamado->id }}">
         @csrf
         @method('PUT')
 
         <div class="mb-3" style="width: 48%">
 
-            <label for="tecnico" class="form-label">Técnico Responsável</label>
-            <select class="form-select" id="tecnico" name="n_cod_tecnico" required>
-                @foreach($tecnicos as $t)
-                <option value='{{ $t->id }}' {{$chamado->n_cod_tecnico == $t->id ? "selected" : ""}}>
-                    {{$t->c_nome_resumido}}
-                </option>
+            <label for="n_cod_tecnico" class="form-label">Técnico Responsável</label>
+            <select class="form-select" id="n_cod_tecnico" name="n_cod_tecnico" required>
+                <option selected disabled>Selecione um técnico...</option>
+
+                @foreach($tecnicos as $tecnico)
+
+
+                    <option {{ $tecnico->id == $chamado->n_cod_tecnico ? "selected" : "" }}  value="{{ $tecnico->id }}">{{ $tecnico->c_nome_resumido }}</option>
+
                 @endforeach
-        </select>
-</div>
 
-<div class=" mb-3" style="width: 48%">
+            </select>
+        </div>
 
-        <label for="solicitante" class="form-label">Solicitante</label>
-        <select class="form-select" id="solicitante" name="n_cod_solicitante">
-            @foreach($solicitantes as $s)
-            <option value="{{$s->id}}" {{$chamando->n_cod_solicitante == $s->id ? "selected" : ""}}>
-                {{$s->c_nome_resumido}}
-            </option>
-            @endforeach
-        </select>
+        <div class="mb-3" style="width: 48%">
 
-</div>
+            <label for="n_cod_solicitante" class="form-label">Solicitante</label>
+            <select class="form-select" id="n_cod_solicitante" name="n_cod_solicitante">
+                <option selected disabled>Selecione um solicitante...</option>
 
-<div class="mb-3" style="width: 48%">
+                @foreach($usuarios as $usuario)
 
-    <label for="status" class="form-label">Status</label>
-    <select class="form-select" id="status" name="f_status">
-        @foreach($statusDoChamado as $status)
-        <option value="{{$status->value}}"
-            @if ($chamado->f_status === $status->value) selected @endif>
-            {{ $status->name }}
-        </option>
-        @endforeach
-    </select>
-</div>
+                    <option {{ $usuario->id == $chamado->n_cod_solicitante ? "selected" : "" }} value="{{ $usuario->id }}">{{ $usuario->c_nome_resumido }}</option>
 
-<div class="mb-3" style="width: 48%">
+                @endforeach
 
-    <label for="categoria" class="form-label">Categoria</label>
-    <select class="form-select" id="categoria" name="categoria">
-        @foreach($categorias as $c)
+            </select>
 
-        <option value="{{ $c->id }}" {{ $chamado->f_categoria == $c->id ? "selected" : "" }}>
-            {{ $c->nome }}
-        </option>
-        @endforeach
-    </select>
+        </div>
 
+        <div class="mb-3" style="width: 48%">
+            <label for="f_status" class="form-label">Status</label>
+            <select class="form-select" id="f_status" name="f_status">
+                <option selected disabled>Selecione um status...</option>
+                
+                <option value="1">Novo chamado</option>
+                <option value="2">Em Atendimento</option>
+                <option value="3">Em Validação</option>
+                <option value="4">Finalizado</option>
 
-</div>
+            </select>
+        </div>
 
-<div class="mb-3" style="width: 98%">
+        <div class="mb-3" style="width: 48%">
 
-    <label for="titulo" class="form-label">Título</label>
-    <input type="text" class="form-control" id="titulo" name="c_titulo" required>
+            <label for="n_categoria" class="form-label">Categoria</label>
 
-</div>
+            <select class="form-select" id="n_categoria" name="n_categoria">
+                <option selected disabled>Selecione uma categoria...</option>
 
-<div class="mb-3" style="width: 98%">
+                @foreach($categorias as $c)
 
-    <label for="descricao" class="form-label">Descrição</label>
-    <textarea class="form-control" id="descricao" name="c_descricao" rows="3" required>
-    {{trim($chamado->c_descricao)}}
-    </textarea>
+                    <option {{ $c->id == $chamado->n_categoria ? "selected" : "" }} value="{{ $c->id }}">{{$c->nome}}</option>
 
-</div>
+                @endforeach
 
-<!-- <input type="hidden" name="n_cod_usuario_inc" value="">
-<input type="hidden" name="d_inclusao" value=""> -->
+            </select>
 
-<button type="submit" class="btn btn-envia mt-3">Cadastrar Chamado</button>
+        </div>
 
-</form>
+        <div class="mb-3" style="width: 98%">
+
+            <label for="titulo" class="form-label">Título</label>
+            <input type="text" class="form-control" id="titulo" name="titulo" value="{{ $chamado->titulo }}" required>
+
+        </div>
+
+        <div class="mb-3" style="width: 98%">
+
+            <label for="descricao" class="form-label">Descrição</label>
+            <textarea class="form-control" id="descricao" name="descricao" rows="3" required> {{ $chamado->descricao }}</textarea>
+
+        </div>
+
+        <input type="hidden" name="n_cod_usuario_inc" value="1">
+
+        <button type="submit" class="btn btn-envia mt-3">Salvar</button>
+
+    </form>
 </div>
 
 @endsection

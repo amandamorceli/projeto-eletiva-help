@@ -17,8 +17,15 @@ class ChamadosController extends Controller
      */
     public function index()
     {
-        $chamados = Chamado::with(['tecnico', 'solicitante', 'categoriaDoChamado'])->get();
-        return view('menu.chamados.index', compact('chamados'));
+        $tecnicos = User::where('f_tipo_usuario', 'T')->get();
+
+        $usuarios = User::all();
+
+        $categorias = Categoria::all();
+
+        $chamados = Chamado::get();
+        
+        return view('menu.chamados.index', compact("chamados", "tecnicos", "usuarios", "categorias"));
     }
 
     /**
@@ -26,11 +33,6 @@ class ChamadosController extends Controller
      */
     public function create()
     {
-        // $categorias = Categoria::all();
-        // $tecnicos = User::where('f_tipo_usuario', 'T')->get();
-        // $solicitantes = User::all();
-        // $statusDoChamado = StatusDoChamado::cases();
-
         $tecnicos = User::where('f_tipo_usuario', 'T')->get();
 
         $usuarios = User::all();
@@ -68,9 +70,15 @@ class ChamadosController extends Controller
      */
     public function show(string $id)
     {
-        $chamados = Chamado::findOrFail($id);
+        $chamado = Chamado::findOrFail($id);
+
+        $tecnicos = User::where('f_tipo_usuario', 'T')->get();
+
+        $usuarios = User::all();
+
         $categorias = Categoria::all();
-        return view("menu.chamados.show", compact('chamados', 'categorias'));
+
+        return view("menu.chamados.show", compact('chamado', 'tecnicos', 'usuarios', 'categorias'));
     }
 
     /**
@@ -78,12 +86,16 @@ class ChamadosController extends Controller
      */
     public function edit(string $id)
     {
+
         $chamado = Chamado::findOrFail($id);
+
+        $tecnicos = User::where('f_tipo_usuario', 'T')->get();
+
+        $usuarios = User::all();
+
         $categorias = Categoria::all();
-        $tecnicos = User::where('b_tipo_usuario', 'true')->get();
-        $solicitantes = User::all();
-        $statusDoChamado = StatusDoChamado::cases();
-        return view("menu.chamados.edit", compact('chamado', 'categorias', 'tecnicos', 'solicitantes', 'statusDoChamado'));
+
+        return view("menu.chamados.edit", compact('chamado', 'tecnicos', 'usuarios', 'categorias'));
     }
 
     /**

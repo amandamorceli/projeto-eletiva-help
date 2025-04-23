@@ -29,18 +29,18 @@
         </thead>
         <tbody>
 
-            @foreach($chamados as $c)
+            @foreach($chamados as $chamado)
 
             <tr>
-                <td><a href="/chamados/{{ $c->id }}/edit"><i class='fas fa-edit'></i></a></td>
-                <td>{{ $c->titulo}}</td>
-                <td>{{ $c->descricao}}</td>
-                <td>{{ $c->n_cod_solicitante}}</td>
-                <td>{{ $c->n_cod_tecnico}}</td>
-                <td>{{ $c->f_categoria}}</td>
-                <td><span class="badge bg-warning text-dark">{{ $c->f_status}}</span></td>
-                <td>{{ $c->d_inclusao}}</td>
-                <td><a href="/chamados/{{ $c->id }}"><i class="fa-solid fa-eye"></i></a></td>
+                <td><a href="/chamados/{{ $chamado->id }}/edit"><i class='fas fa-edit'></i></a></td>
+                <td>{{ $chamado->titulo}}</td>
+                <td>{{ $chamado->descricao}}</td>
+                <td>{{ $chamado->n_cod_solicitante}}</td>
+                <td>{{ $chamado->n_cod_tecnico}}</td>
+                <td>{{ $chamado->n_categoria}}</td>
+                <td><span class="badge bg-warning text-dark">{{ $chamado->f_status}}</span></td>
+                <td>{{ $chamado->d_inclusao}}</td>
+                <td><a href="/chamados/{{ $chamado->id }}"><i class="fa-solid fa-eye"></i></a></td>
             </tr>
 
             @endforeach
