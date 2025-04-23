@@ -110,8 +110,8 @@
 
             <div class="mb-3" style="width: 48%">
 
-                <label for="f_tipo_usuario" class="form-label">Tipo Pessoa</label>
-                <select class="form-select" id="f_tipo_usuario" name="f_tipo_fj">
+                <label for="f_tipo_fj" class="form-label">Tipo Pessoa</label>
+                <select class="form-select" id="f_tipo_fj" name="f_tipo_fj">
                     <option selected disabled>Selecione um solicitante...</option>
                     <option value="F">Física</option>
                     <option value="J">Jurídica</option>
@@ -120,9 +120,9 @@
             </div>
 
             <div class="mb-3" style="width: 48%">
-                <label for="status" class="form-label">Tipo usuário</label>
+                <label for="f_tipo_usuario" class="form-label">Tipo usuário</label>
                 
-                <select class="form-select" id="status" name="f_tipo_usuario">
+                <select class="form-select" id="f_tipo_usuario" name="f_tipo_usuario">
 
                     <option selected disabled>Selecione o tipo usuario...</option>
 

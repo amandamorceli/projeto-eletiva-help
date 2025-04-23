@@ -35,7 +35,7 @@
                 <td><a href="/usuarios/{{ $u->id }}/edit"><i class='fas fa-edit'></i></a></td>
                 <td>{{ $u->c_login}}</td>
                 <td>{{ $u->c_nome_resumido}}</td>
-                <td>{{ $u->f_tipo_usuario}}</td>
+                <td>{{ $u->f_tipo_usuario == "T" ? "Técnico" : "Usuário"}}</td>
                 <td>{{ $u->d_inicio}}</td>
                 <td>{{ $u->d_inclusao}}</td>
                 <td><a href="/usuarios/{{ $u->id }}"><i class='fas fa-eye'></i></a></td>

@@ -36,7 +36,7 @@ class UsersController extends Controller
             $dados = $request->all();
             $dados['d_inclusao'] = now();
             $dados['d_inicio'] = now();
-            $dados['c_login'] = now()->format('Y-m-d_H:i:s') . '_' . rand(1000, 9999);
+            $dados['c_login'] =  strtolower(trim($dados['c_nome_resumido']));
 
             User::create($dados);
             

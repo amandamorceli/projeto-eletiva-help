@@ -26,11 +26,18 @@ class ChamadosController extends Controller
      */
     public function create()
     {
-        $categorias = Categoria::all();
+        // $categorias = Categoria::all();
+        // $tecnicos = User::where('f_tipo_usuario', 'T')->get();
+        // $solicitantes = User::all();
+        // $statusDoChamado = StatusDoChamado::cases();
+
         $tecnicos = User::where('f_tipo_usuario', 'T')->get();
-        $solicitantes = User::all();
-        $statusDoChamado = StatusDoChamado::cases();
-        return view("menu.chamados.create", compact("categorias", "tecnicos", "solicitantes", "statusDoChamado"));
+
+        $usuarios = User::all();
+
+        $categorias = Categoria::all();
+
+        return view("menu.chamados.create", compact("tecnicos", "usuarios", "categorias"));
     }
 
     /**
@@ -39,13 +46,19 @@ class ChamadosController extends Controller
     public function store(Request $request)
     {
         try {
+
             Chamado::create($request->all());
+            
             return redirect()->route('chamados.index')->with('sucesso', 'Chamado criado com sucesso!');
-        } catch (Exception $e) {
+
+        } 
+        catch (Exception $e) {
+            
             Log::error("Erro ao criar o chamado: " . $e->getMessage(), [
                 'stack' => $e->getTraceAsString(),
                 'request' => $request->all()
             ]);
+
             return redirect()->route('chamados.index')->with('erro', 'Erro ao criar o chamado!');
         }
     }
