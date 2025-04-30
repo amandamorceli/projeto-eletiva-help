@@ -6,25 +6,33 @@
         border-radius: 10px;
         box-shadow: 0px 0px 12px 0px #333333;
     }
+    .icones{
+        font-size: 1.2rem;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        align-items: center;
+    }
+    td{
+        vertical-align: middle !important;
+    }
 </style>
 @section('conteudo')
 <h3 class="mb-4">Lista de Chamados</h3>
 
-<div class="table-responsive">
+<div class="table-responsive" style="width: 90%;">
 
-    <table class="table table-bordered table-hover table-striped">
+    <table class="table table-bordered table-hover table-striped" style="width: 100%;">
 
         <thead class="table-dark">
             <tr>
-                <th>&nbsp</th>
-                <th>Título</th>
-                <th>Descrição</th>
-                <th>Solicitante</th>
-                <th>Técnico</th>
-                <th>Categoria</th>
-                <th>Status</th>
-                <th>Data de Inclusão</th>
-                <th>&nbsp</th>
+                <th style="width: 5%">&nbsp</th>
+                <th style="width: 20%">&nbsp</th>
+                <th style="width: 15%">Título</th>
+                <th style="width: 25%">Descrição</th>
+                <th style="width: 20%">Pessoas</th>
+                <th style="width: 12%">Data de Inclusão</th>
             </tr>
         </thead>
         <tbody>
@@ -32,15 +40,57 @@
             @foreach($chamados as $chamado)
 
             <tr>
-                <td><a href="/chamados/{{ $chamado->id }}/edit"><i class='fas fa-edit'></i></a></td>
+                <td>
+
+                    <span class="icones">
+
+                        <a href="/chamados/{{ $chamado->id }}"><i class="fa-solid fa-eye"></i></a>
+
+                        <a href="/chamados/{{ $chamado->id }}/edit"><i class='fas fa-edit'></i></a>
+
+                    </span>
+
+
+                </td>
+
+                <td>
+                    <table width='100%'>
+
+                        <tr>
+                            <td>Código:</td>
+                            <td>{{ $chamado->id}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Status:</td>
+                            <td>{{ $chamado->f_status}}</td>
+                        </tr>
+                        <tr>
+                            <td>Categoria:</td>
+                            <td>{{ $chamado->n_categoria}}</td>
+                        </tr>
+
+                    </table>
+                </td>
+
                 <td>{{ $chamado->titulo}}</td>
                 <td>{{ $chamado->descricao}}</td>
-                <td>{{ $chamado->n_cod_solicitante}}</td>
-                <td>{{ $chamado->n_cod_tecnico}}</td>
-                <td>{{ $chamado->n_categoria}}</td>
-                <td><span class="badge bg-warning text-dark">{{ $chamado->f_status}}</span></td>
+                <td>
+                    <table width='100%'>
+
+                        <tr>
+                            <td>Solicitante:</td>
+                            <td>{{ $chamado->n_cod_solicitante}}</td>
+                        </tr>
+
+                        <tr>
+                            <td>Técnico:</td>
+                            <td>{{ $chamado->n_cod_tecnico}}</td>
+                        </tr>
+
+                    </table>
+                </td>
                 <td>{{ $chamado->d_inclusao}}</td>
-                <td><a href="/chamados/{{ $chamado->id }}"><i class="fa-solid fa-eye"></i></a></td>
             </tr>
 
             @endforeach
