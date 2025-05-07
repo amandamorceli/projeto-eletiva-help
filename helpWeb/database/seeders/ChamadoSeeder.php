@@ -2,11 +2,12 @@
 
 namespace Database\Seeders;
 
+
 use Illuminate\Database\Seeder;
 use App\Models\Chamado; // importa o model Chamado
 use Carbon\Carbon;
 
-class ChamadosSeeder extends Seeder // renomeie a classe para evitar conflito
+class ChamadoSeeder extends Seeder // renomeie a classe para evitar conflito
 {
     /**
      * Run the database seeds.
