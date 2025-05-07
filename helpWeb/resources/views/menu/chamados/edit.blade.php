@@ -14,6 +14,17 @@
     }
 
     .btn-envia {
+        background-color: #1cc916 !important;
+        color: #fff !important;
+        transition: all ease-in-out 0.3s !important;
+
+        &:hover {
+            background-color:rgb(19, 134, 15) !important;
+            color: #fff !important;
+        }
+    }
+
+    .btn_voltar{
         background-color: #4e59dd !important;
         color: #fff !important;
         transition: all ease-in-out 0.3s !important;
@@ -23,6 +34,7 @@
             color: #fff !important;
         }
     }
+
 </style>
 
 @section('conteudo')
@@ -116,6 +128,7 @@
         <input type="hidden" name="n_cod_usuario_inc" value="1">
 
         <button type="submit" class="btn btn-envia mt-3">Salvar</button>
+        <a href="{{ url()->previous() }}" class="btn btn_voltar mt-3">Voltar</a>
 
     </form>
 </div>
