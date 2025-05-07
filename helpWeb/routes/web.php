@@ -32,3 +32,5 @@ Route::resource('usuarios', UsersController::class);
 Route::get('/chamados/show', function () {
     return view('menu.chamados.show');
 });
+
+Route::get('/chamados/status/{status}', [ChamadosController::class, 'filtrarPorStatus'])->name('chamados.filtrar');

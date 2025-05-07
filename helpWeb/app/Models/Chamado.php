@@ -47,7 +47,25 @@ class Chamado extends Model
         return $this->belongsTo(Categoria::class, 'n_categoria');
     }
 
-    protected $casts = [
-        'f_status' => StatusDoChamado::class,
-    ];
+    public function getStatusNomeAttribute()
+    {
+        switch ($this->f_status) {
+            case 1:
+                return "Novo Chamado";
+                break;
+            case 2:
+                return "Em Atendimento";
+                break;
+            case 3:
+                return "Em Validação";
+                break;
+            case 4:
+                return "Finalizado";
+                break;
+            default:
+                return "Desconhecido"; 
+        }
+    }
+
+    
 }

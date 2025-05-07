@@ -38,7 +38,7 @@
         <tbody>
 
             @foreach($chamados as $chamado)
-
+            
             <tr>
                 <td>
 
@@ -63,11 +63,11 @@
 
                         <tr>
                             <td>Status:</td>
-                            <td>{{ $chamado->f_status}}</td>
+                            <td>{{ $chamado->status_nome}}</td>
                         </tr>
                         <tr>
                             <td>Categoria:</td>
-                            <td>{{ $chamado->n_categoria}}</td>
+                            <td>{{ $chamado->categoriaDoChamado->nome}}</td>
                         </tr>
 
                     </table>
@@ -80,17 +80,17 @@
 
                         <tr>
                             <td>Solicitante:</td>
-                            <td>{{ $chamado->n_cod_solicitante}}</td>
+                            <td>{{ $chamado->solicitante->c_nome_completo}}</td>
                         </tr>
 
                         <tr>
                             <td>Técnico:</td>
-                            <td>{{ $chamado->n_cod_tecnico}}</td>
+                            <td>{{ $chamado->tecnico->c_nome_completo}}</td>
                         </tr>
 
                     </table>
                 </td>
-                <td>{{ $chamado->d_inclusao}}</td>
+                <td>{{ date('d/m/Y', strtotime($chamado->d_inclusao)) }}</td>
             </tr>
 
             @endforeach

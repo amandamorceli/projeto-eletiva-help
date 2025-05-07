@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Log;
 use App\Models\Chamado;
 use App\Models\Categoria;
 use App\Models\User;
-use App\Constants\StatusDoChamado;
 
 class ChamadosController extends Controller
 {
@@ -24,6 +23,22 @@ class ChamadosController extends Controller
         $categorias = Categoria::all();
 
         $chamados = Chamado::get();
+        
+        $statusMap = [
+            1 => 'Novo chamado',
+            2 => 'Em Atendimento',
+            3 => 'Em Validação',
+            4 => 'Finalizado',
+        ];
+    
+        $chamados = Chamado::all()->map(function ($chamado) use ($statusMap) {
+
+            $codigoStatus = (int) $chamado->f_status; // converte para inteiro
+
+            $chamado->f_status = $statusMap[$codigoStatus] ?? 'Desconhecido';
+
+            return $chamado;
+        });
         
         return view('menu.chamados.index', compact("chamados", "tecnicos", "usuarios", "categorias"));
     }
@@ -134,4 +149,12 @@ class ChamadosController extends Controller
             return redirect()->route('chamados.index')->with('erro', 'Erro ao excluir o chamado!');
         }
     }
+
+    public function filtrarPorStatus($status)
+    {
+        $chamados = Chamado::where('f_status', $status)->get();
+
+        return view('menu.chamados.index', compact('chamados', 'status'));
+    }
+
 }

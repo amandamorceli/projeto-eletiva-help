@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- <link rel="stylesheet" href="{{ asset('css/login.css') }}"> -->
+    @yield('css')
 </head>
 
 <style>
@@ -72,6 +73,7 @@
 
 <body>
 
+    <!-- menu tecnico -->
     <!-- Sidebar -->
     <div class="sidebar">
         <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
@@ -98,30 +100,30 @@
         <h6 class="text-uppercase text-secondary">Chamados</h6>
         <ul class="nav nav-pills flex-column mb-3">
             <li class="nav-item">
-                <a href="/chamados/create" class="nav-link text-white">
+                <a href="{{ route('chamados.create') }}" class="nav-link text-white">
                     <i class="fas fa-plus-circle"></i> Inserir Chamado
                 </a>
             </li>
             <li>
-                <a href="/chamados/" class="nav-link text-white">
-                    <i class="fas fa-inbox"></i> Chamados
-                </a>
-            </li>
-            <!-- <li>
-                <a href="#" class="nav-link text-white">
-                    <i class="fas fa-calendar-check"></i> Chamados Agendados
+                <a href="{{ route('chamados.filtrar', '1') }}" class="nav-link text-white">
+                    <i class="fas fa-inbox"></i> Novos Chamados
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
-                    <i class="fas fa-check-circle"></i> Finalizados
+                <a href="{{ route('chamados.filtrar', '2') }}" class="nav-link text-white">
+                    <i class="fas fa-calendar-check"></i> Em atendimento
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
-                    <i class="fas fa-trash-alt"></i> Excluídos
+                <a href="{{ route('chamados.filtrar', '3') }}" class="nav-link text-white">
+                    <i class="fas fa-check-circle"></i> Em Validação
                 </a>
-            </li> -->
+            </li>
+            <li>
+                <a href="{{ route('chamados.filtrar', '4') }}" class="nav-link text-white">
+                    <i class="fa-solid fa-check"></i> Finalizados
+                </a>
+            </li>
         </ul>
 
         <hr>

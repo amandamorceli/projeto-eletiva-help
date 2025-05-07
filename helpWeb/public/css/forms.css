@@ -1,0 +1,43 @@
+input[type='text'],
+select,
+textarea {
+    box-shadow: 0px 0.5px 10px 0px #d1d1d1;
+}
+
+.container {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 12px 0px #333333;
+}
+
+.btn-envia {
+    background-color: #1cc916 !important;
+    color: #fff !important;
+    transition: all ease-in-out 0.3s !important;
+
+    &:hover {
+        background-color: rgb(19, 134, 15) !important;
+        color: #fff !important;
+    }
+}
+
+.btn_voltar {
+    background-color: #4e59dd !important;
+    color: #fff !important;
+    transition: all ease-in-out 0.3s !important;
+
+    &:hover {
+        background-color: #2e347b !important;
+        color: #fff !important;
+    }
+}
+
+.btn-envia, .btn_voltar{
+    width: 40%;
+}
+
+.botoes {
+    display: flex;
+    justify-content: space-evenly;
+    width: 40%;
+}
