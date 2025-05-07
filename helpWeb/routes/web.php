@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Chamado;
 use App\Http\Controllers\ChamadosController;
 use App\Http\Controllers\UsersController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,18 +19,24 @@ use App\Http\Controllers\UsersController;
 |
 */
 
-Route::get('/', function () {
-    return view('help');
-});
+Route::get('/login', [AuthController::class, 'showLogin'])->name('');
+Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/help', function () {
-    return view('help');
-});
+Route::middleware('auth')->group(function(){
+    
+    Route::get('/', function () {
+        return view('help');
+    });
 
-Route::resource('chamados', ChamadosController::class);
+    Route::get('/help', function () {
+        return view('help');
+    });
 
-Route::resource('usuarios', UsersController::class);
-
-Route::get('/chamados/show', function () {
-    return view('menu.chamados.show');
+    Route::resource('usuarios', UsersController::class);
+    
+    Route::resource('chamados', ChamadosController::class);
+   
+    Route::get('/chamados/show', function () {
+        return view('menu.chamados.show');
+    });
 });
