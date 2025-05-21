@@ -17,8 +17,8 @@ class Chamado extends Model
         'descricao',
         'f_status',
         'n_categoria',
-        'n_cod_usuario_inc',
-        'n_cod_usuario_alt',
+        // 'n_cod_usuario_inc',
+        // 'n_cod_usuario_alt',
         'd_inclusao'
     ];
 

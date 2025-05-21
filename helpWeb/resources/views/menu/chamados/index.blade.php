@@ -90,7 +90,7 @@
 
                     </table>
                 </td>
-                <td>{{ date('d/m/Y', strtotime($chamado->d_inclusao)) }}</td>
+                <td style="text-align: center;">{{ date('d/m/Y', strtotime($chamado->d_inclusao)) }}</td>
             </tr>
 
             @endforeach

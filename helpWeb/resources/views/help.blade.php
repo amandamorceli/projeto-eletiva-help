@@ -77,7 +77,7 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <span class="fs-4"><i class="fas fa-tools"></i> Painel</span>
+            <span class="fs-4"><i class="fas fa-tools"></i> &nbsp; Painel</span>
         </a>
         <hr>
 
@@ -85,12 +85,12 @@
         <ul class="nav nav-pills flex-column">
             <li>
                 <a href="/usuarios/create" class="nav-link text-white">
-                    <i class="fas fa-user-plus"></i> Inserir Usuário
+                    <i class="fas fa-user-plus"></i> &nbsp; Inserir Usuário
                 </a>
             </li>
             <li>
                 <a href="/usuarios/" class="nav-link text-white">
-                    <i class="fas fa-users"></i> Usuários
+                    <i class="fas fa-users"></i> &nbsp; Usuários
                 </a>
             </li>
         </ul>
@@ -101,27 +101,32 @@
         <ul class="nav nav-pills flex-column mb-3">
             <li class="nav-item">
                 <a href="{{ route('chamados.create') }}" class="nav-link text-white">
-                    <i class="fas fa-plus-circle"></i> Inserir Chamado
+                    <i class="fas fa-plus-circle"></i> &nbsp; Inserir Chamado
+                </a>
+            </li>
+            <li>
+                <a href="/chamados" class="nav-link text-white">
+                    <i class="fa-solid fa-globe"></i> &nbsp; Todos
                 </a>
             </li>
             <li>
                 <a href="{{ route('chamados.filtrar', '1') }}" class="nav-link text-white">
-                    <i class="fas fa-inbox"></i> Novos Chamados
+                    <i class="fas fa-inbox"></i> &nbsp; Novos Chamados
                 </a>
             </li>
             <li>
                 <a href="{{ route('chamados.filtrar', '2') }}" class="nav-link text-white">
-                    <i class="fas fa-calendar-check"></i> Em atendimento
+                    <i class="fas fa-calendar-check"></i> &nbsp; Em atendimento
                 </a>
             </li>
             <li>
                 <a href="{{ route('chamados.filtrar', '3') }}" class="nav-link text-white">
-                    <i class="fas fa-check-circle"></i> Em Validação
+                    <i class="fas fa-check-circle"></i> &nbsp; Em Validação
                 </a>
             </li>
             <li>
                 <a href="{{ route('chamados.filtrar', '4') }}" class="nav-link text-white">
-                    <i class="fa-solid fa-check"></i> Finalizados
+                    <i class="fa-solid fa-check"></i> &nbsp; Finalizados
                 </a>
             </li>
         </ul>
