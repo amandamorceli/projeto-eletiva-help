@@ -98,6 +98,7 @@
         <hr>
 
         <h6 class="text-uppercase text-secondary">Chamados</h6>
+
         <ul class="nav nav-pills flex-column mb-3">
             <li class="nav-item">
                 <a href="{{ route('chamados.create') }}" class="nav-link text-white">
@@ -132,6 +133,14 @@
         </ul>
 
         <hr>
+
+        <ul class="nav nav-pills flex-column mb-3">
+            <li>
+                <a href="/sair" class="nav-link text-white">
+                    <i class="fa-solid fa-arrow-left"></i> &nbsp; Sair
+                </a>
+            </li>
+        </ul>
     </div>
 
     <!-- Content Area -->

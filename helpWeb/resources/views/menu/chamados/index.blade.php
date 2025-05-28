@@ -17,6 +17,16 @@
     td{
         vertical-align: middle !important;
     }
+
+    .campo-multiplo-titulos{
+        width: 20%; 
+        text-align: left;
+    }
+    .campo-multiplo-textos{
+        width: auto; 
+        text-align: left;
+        padding-left: 10px;
+    }
 </style>
 @section('conteudo')
 <h3 class="mb-4">Lista de Chamados</h3>
@@ -57,35 +67,78 @@
                     <table width='100%'>
 
                         <tr>
-                            <td>Código:</td>
-                            <td>{{ $chamado->id}}</td>
+                            <td class="campo-multiplo-titulos">Código:</td>
+                            <td class="campo-multiplo-textos">{{ $chamado->id}}</td>
                         </tr>
 
                         <tr>
-                            <td>Status:</td>
-                            <td>{{ $chamado->status_nome}}</td>
+                            <td class="campo-multiplo-titulos">Status:</td>
+                            <td class="campo-multiplo-textos">{{ $chamado->status_nome}}</td>
                         </tr>
                         <tr>
-                            <td>Categoria:</td>
-                            <td>{{ $chamado->categoriaDoChamado->nome}}</td>
+                            <td class="campo-multiplo-titulos">Categoria:</td>
+                            <td class="campo-multiplo-textos">
+
+                                @if ($chamado->categoriaDoChamado)
+
+                                    {{ $chamado->categoriaDoChamado->nome }}
+
+                                @else
+
+                                    Sem categoria
+
+                                @endif
+                            
+                            </td>
                         </tr>
 
                     </table>
                 </td>
 
                 <td>{{ $chamado->titulo}}</td>
+
                 <td>{{ $chamado->descricao}}</td>
+
                 <td>
                     <table width='100%'>
 
                         <tr>
-                            <td>Solicitante:</td>
-                            <td>{{ $chamado->solicitante->c_nome_completo}}</td>
+
+                            <td class="campo-multiplo-titulos">Solicitante:</td>
+
+                            <td class="campo-multiplo-textos">
+
+                                @if ($chamado->solicitante)
+
+                                    {{ $chamado->solicitante->c_nome_resumido }}
+
+                                @else
+
+                                    Não informado
+
+                                @endif
+                                
+                            </td>
+
                         </tr>
 
                         <tr>
-                            <td>Técnico:</td>
-                            <td>{{ $chamado->tecnico->c_nome_completo}}</td>
+                            <td class="campo-multiplo-titulos">Técnico:</td>
+
+                            <td class="campo-multiplo-textos">
+
+                                @if ($chamado->tecnico)
+
+                                    {{ $chamado->tecnico->c_nome_resumido }}
+
+                                @else
+
+                                    Não informado
+                                    
+                                @endif
+
+                            </td>
+                            
                         </tr>
 
                     </table>

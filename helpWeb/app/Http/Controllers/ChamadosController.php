@@ -24,22 +24,6 @@ class ChamadosController extends Controller
 
         $chamados = Chamado::get();
         
-        $statusMap = [
-            1 => 'Novo chamado',
-            2 => 'Em Atendimento',
-            3 => 'Em Validação',
-            4 => 'Finalizado',
-        ];
-    
-        $chamados = Chamado::all()->map(function ($chamado) use ($statusMap) {
-
-            $codigoStatus = (int) $chamado->f_status; // converte para inteiro
-
-            $chamado->f_status = $statusMap[$codigoStatus] ?? 'Desconhecido';
-
-            return $chamado;
-        });
-        
         return view('menu.chamados.index', compact("chamados", "tecnicos", "usuarios", "categorias"));
     }
 
@@ -64,7 +48,11 @@ class ChamadosController extends Controller
     {
         try {
 
-            Chamado::create($request->all());
+            $chamado = $request->all();
+
+            $chamado['f_status'] = 1;
+
+            Chamado::create($chamado);
             
             return redirect()->route('chamados.index')->with('sucesso', 'Chamado criado com sucesso!');
 
@@ -120,14 +108,19 @@ class ChamadosController extends Controller
     {
         try {
             $chamado = Chamado::findOrFail($id);
+
             $chamado->update($request->all());
+
             return redirect()->route('chamados.index')->with('sucesso', 'Chamado alterado com sucesso!');
+
         } catch (Exception $e) {
+            
             Log::error("Erro ao atualizar o chamado:" . $e->getMessage(), [
                 'stack' => $e->getTraceAsString(),
                 'chamado_id' => $id,
                 'request' => $request->all()
             ]);
+            
             return redirect()->route('chamados.index')->with('erro', 'Erro ao alterar o chamado!');
         }
     }

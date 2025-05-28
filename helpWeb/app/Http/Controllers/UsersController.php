@@ -61,6 +61,8 @@ class UsersController extends Controller
 
             $dados['n_cep'] = str_replace('-', '', $dados['n_cep']);
 
+            $dados['c_senha'] = 'help$' . date('Y') . '$';
+
             User::create($dados);
             
             return redirect()->route('usuarios.index')->with('sucesso', 'Usuário criado com sucesso!');

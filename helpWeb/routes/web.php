@@ -21,6 +21,10 @@ Route::get('/', function () {
     return view('help');
 });
 
+Route::get('/sair', function () {
+    return view('login.login');
+});
+
 Route::get('/help', function () {
     return view('help');
 });
