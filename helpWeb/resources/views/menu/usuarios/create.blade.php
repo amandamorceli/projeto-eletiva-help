@@ -1,5 +1,11 @@
 @extends('help')
 
+@section('css')
+
+    <link rel="stylesheet" href="{{ asset('css/forms.css') }}">
+
+@endsection
+
 <style>
     input[type='text'],
     select,
@@ -38,15 +44,15 @@
 
             <div class="mb-3" style="width: 48%">
 
-                <label for="nome" class="form-label">Nome Completo</label>
-                <input type="text" class="form-control" id="nome" name="c_nome_completo" required>
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
 
             </div>
 
             <div class="mb-3" style="width: 48%">
 
-                <label for="nomeResumido" class="form-label">Nome Resumido</label>
-                <input type="text" class="form-control" id="nomeResumido" name="c_nome_resumido" required>
+                <label for="sobrenome" class="form-label">Sobrenome</label>
+                <input type="text" class="form-control" id="sobrenome" name="sobrenome" required>
 
             </div>
 
@@ -73,13 +79,6 @@
 
             <div class="mb-3" style="width: 48%">
 
-                <label for="c_endereco" class="form-label">Endereço</label>
-                <input type="text" class="form-control" id="c_endereco" name="c_endereco" required>
-
-            </div>
-
-            <div class="mb-3" style="width: 48%">
-
                 <label for="c_numero_endereco" class="form-label">Numero</label>
                 <input type="text" class="form-control" id="c_numero_endereco" name="c_numero_endereco" required>
 
@@ -87,22 +86,29 @@
 
             <div class="mb-3" style="width: 48%">
 
+                <label for="c_endereco" class="form-label">Endereço</label>
+                <input type="text" class="form-control" id="c_endereco" name="c_endereco" required readonly>
+
+            </div>
+            
+            <div class="mb-3" style="width: 48%">
+
                 <label for="c_bairo" class="form-label">Bairro</label>
-                <input type="text" class="form-control" id="c_bairo" name="c_bairo" required>
+                <input type="text" class="form-control" id="c_bairo" name="c_bairo" required readonly>
 
             </div>
 
             <div class="mb-3" style="width: 48%">
 
                 <label for="c_cidade" class="form-label">Cidade</label>
-                <input type="text" class="form-control" id="c_cidade" name="c_cidade" required>
+                <input type="text" class="form-control" id="c_cidade" name="c_cidade" required readonly>
 
             </div>
 
             <div class="mb-3" style="width: 48%">
 
                 <label for="c_estado" class="form-label">Estado</label>
-                <input type="text" class="form-control" id="c_estado" name="c_estado" required>
+                <input type="text" class="form-control" id="c_estado" name="c_estado" required readonly>
 
             </div>
 
@@ -133,8 +139,19 @@
 
             <input type="hidden" name="n_cod_usuario_inc" value="1">
 
-            <button type="submit" class="btn btn-envia mt-3">Cadastrar Usuário</button>
+            <div class="botoes">
+
+                <button type="submit" class="btn btn-envia mt-3">Cadastrar Usuário</button>
+
+                <a href="{{ url()->previous() }}" class="btn btn_voltar mt-3">Voltar</a>
+
+            </div>
 
         </form>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.9/jquery.inputmask.min.js" integrity="sha512-F5Ul1uuyFlGnIT1dk2c4kB4DBdi5wnBJjVhL7gQlGh46Xn0VhvD8kgxLtjdZ5YN83gybk/aASUAlpdoWUjRR3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('js/funcoes.js') }}"></script>
+
 @endsection

@@ -14,6 +14,17 @@
     }
 
     .btn-envia {
+        background-color: #1cc916 !important;
+        color: #fff !important;
+        transition: all ease-in-out 0.3s !important;
+
+        &:hover {
+            background-color:rgb(19, 134, 15) !important;
+            color: #fff !important;
+        }
+    }
+
+    .btn_voltar{
         background-color: #4e59dd !important;
         color: #fff !important;
         transition: all ease-in-out 0.3s !important;
@@ -22,6 +33,16 @@
             background-color: #2e347b !important;
             color: #fff !important;
         }
+    }
+
+    .btn-envia, .btn_voltar{
+        width: 40%;
+    }
+
+    .botoes {
+        display: flex;
+        justify-content: space-evenly;
+        width: 40%;
     }
 </style>
 
@@ -74,13 +95,6 @@
 
             <div class="mb-3" style="width: 48%">
 
-                <label for="c_endereco" class="form-label">Endereço</label>
-                <input type="text" class="form-control" id="c_endereco" name="c_endereco" value="{{ $usuario->c_endereco }}" required>
-
-            </div>
-
-            <div class="mb-3" style="width: 48%">
-
                 <label for="c_numero_endereco" class="form-label">Numero</label>
                 <input type="text" class="form-control" id="c_numero_endereco" name="c_numero_endereco" value="{{ $usuario->c_numero_endereco }}" required>
 
@@ -88,22 +102,29 @@
 
             <div class="mb-3" style="width: 48%">
 
+                <label for="c_endereco" class="form-label">Endereço</label>
+                <input type="text" class="form-control" id="c_endereco" name="c_endereco" value="{{ $usuario->c_endereco }}" required readonly>
+
+            </div>
+
+            <div class="mb-3" style="width: 48%">
+
                 <label for="c_bairo" class="form-label">Bairro</label>
-                <input type="text" class="form-control" id="c_bairo" name="c_bairo" value="{{ $usuario->c_bairo }}" required>
+                <input type="text" class="form-control" id="c_bairo" name="c_bairo" value="{{ $usuario->c_bairo }}" required readonly>
 
             </div>
 
             <div class="mb-3" style="width: 48%">
 
                 <label for="c_cidade" class="form-label">Cidade</label>
-                <input type="text" class="form-control" id="c_cidade" name="c_cidade" value="{{ $usuario->c_cidade }}" required>
+                <input type="text" class="form-control" id="c_cidade" name="c_cidade" value="{{ $usuario->c_cidade }}" required readonly>
 
             </div>
 
             <div class="mb-3" style="width: 48%">
 
                 <label for="c_estado" class="form-label">Estado</label>
-                <input type="text" class="form-control" id="c_estado" name="c_estado" value="{{ $usuario->c_estado }}" required>
+                <input type="text" class="form-control" id="c_estado" name="c_estado" value="{{ $usuario->c_estado }}" required readonly>
 
             </div>
 
@@ -134,8 +155,17 @@
 
             <input type="hidden" name="n_cod_usuario_inc" value="1">
 
-            <button type="submit" class="btn btn-envia mt-3">Salvar alteração</button>
+            <div class="botoes">
+
+                <button type="submit" class="btn btn-envia mt-3">Salvar</button>
+                <a href="{{ url()->previous() }}" class="btn btn_voltar mt-3">Voltar</a>
+
+            </div>
 
         </form>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.9/jquery.inputmask.min.js" integrity="sha512-F5Ul1uuyFlGnIT1dk2c4kB4DBdi5wnBJjVhL7gQlGh46Xn0VhvD8kgxLtjdZ5YN83gybk/aASUAlpdoWUjRR3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="{{ asset('js/funcoes.js') }}"></script>
 @endsection

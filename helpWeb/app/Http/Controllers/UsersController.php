@@ -34,9 +34,32 @@ class UsersController extends Controller
         try {
 
             $dados = $request->all();
-            $dados['d_inclusao'] = now();
+
             $dados['d_inicio'] = now();
-            $dados['c_login'] =  strtolower(trim($dados['c_nome_resumido']));
+
+            $primeiroNomeCompleto   = $dados['nome'];      
+            $sobrenomeCompleto      = $dados['sobrenome'];   
+
+            // Explode para separar por espaços
+            $partesPrimeiroNome = explode(' ', trim($primeiroNomeCompleto));
+            $partesSobrenome = explode(' ', trim($sobrenomeCompleto));
+
+            // Pega o primeiro nome (posição 0)
+            $primeiroNome = strtolower($partesPrimeiroNome[0]);
+
+            // Pega o último sobrenome (última posição do array)
+            $ultimoSobrenome = strtolower($partesSobrenome[count($partesSobrenome) - 1]);
+
+            // Monta o nome completo com o primeiro nome e último sobrenome
+            $dados['c_nome_completo'] = $primeiroNomeCompleto . " " . $sobrenomeCompleto;
+
+            // Nome resumido = só o primeiro nome
+            $dados['c_nome_resumido'] = $primeiroNomeCompleto;
+
+            // Login vazio, como antes
+            $dados['c_login'] = $primeiroNome . '.' . $ultimoSobrenome;
+
+            $dados['n_cep'] = str_replace('-', '', $dados['n_cep']);
 
             User::create($dados);
             

@@ -33,8 +33,8 @@
                 <th style="width: 20%">Login</th>
                 <th style="width: 15%">Nome Resumido</th>
                 <th style="width: 25%">Tipo Usuário</th>
-                <th style="width: 20%">Data Início</th>
-                <th style="width: 12%">Data Inclusão</th>
+                <th style="width: 20%; text-align: center;">Data Início</th>
+                <!-- <th style="width: 12%">Data Inclusão</th> -->
             </tr>
         </thead>
         <tbody>
@@ -42,14 +42,21 @@
             @foreach($usuarios as $u)
 
             <tr>
-                <td><a href="/usuarios/{{ $u->id }}/edit"><i class='fas fa-edit'></i></a></td>
+                <td>
+
+                    <span class="icones">
+
+                        <a href="/usuarios/{{ $u->id }}"><i class='fas fa-eye'></i></a>
+                        <a href="/usuarios/{{ $u->id }}/edit"><i class='fas fa-edit'></i></a>
+
+                    </span>	
+
+                </td>
                 <td>{{ $u->c_login}}</td>
                 <td>{{ $u->c_nome_resumido}}</td>
                 <td>{{ $u->f_tipo_usuario == "T" ? "Técnico" : "Usuário"}}</td>
-                <td>{{ $u->d_inicio}}</td>
-                <td>{{ $u->d_inclusao}}</td>
-                <td><a href="/usuarios/{{ $u->id }}"><i class='fas fa-eye'></i></a></td>
-            </tr>
+                <td style="text-align: center;">{{ date('d/m/Y', strtotime($u->d_inicio)) }}</td>
+                <!-- <td>{{ $u->d_inclusao}}</td> -->
 
             @endforeach
             
