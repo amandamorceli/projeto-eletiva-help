@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Chamado;
@@ -19,11 +18,8 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/login', [AuthController::class, 'showLogin'])->name('');
-Route::post('/login', [AuthController::class, 'login']);
+Route::middleware('auth')->group(function () {
 
-Route::middleware('auth')->group(function(){
-    
     Route::get('/', function () {
         return view('help');
     });
@@ -33,9 +29,9 @@ Route::middleware('auth')->group(function(){
     });
 
     Route::resource('usuarios', UsersController::class);
-    
+
     Route::resource('chamados', ChamadosController::class);
-   
+
     Route::get('/chamados/show', function () {
         return view('menu.chamados.show');
     });
