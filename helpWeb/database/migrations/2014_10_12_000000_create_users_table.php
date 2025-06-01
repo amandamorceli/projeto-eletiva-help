@@ -27,10 +27,10 @@ return new class extends Migration
             $table->string('c_bairo');
             $table->string('c_cidade');
             $table->string('c_estado');
-            $table->dateTime('d_inicio')->nullable();
+            $table->dateTime('d_inicio')->default(date('Y-m-d'));
             $table->dateTime('d_fim')->nullable();    
-            $table->integer('n_cod_usuario_inc');
-            $table->dateTime('d_inclusao')->nullable();
+            // $table->integer('n_cod_usuario_inc');
+            // $table->dateTime('d_inclusao')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

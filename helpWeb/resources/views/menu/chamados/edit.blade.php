@@ -35,6 +35,16 @@
         }
     }
 
+    .btn-envia, .btn_voltar{
+        width: 40%;
+    }
+
+    .botoes {
+        display: flex;
+        justify-content: space-evenly;
+        width: 40%;
+    }
+
 </style>
 
 @section('conteudo')
@@ -127,8 +137,12 @@
 
         <input type="hidden" name="n_cod_usuario_inc" value="1">
 
-        <button type="submit" class="btn btn-envia mt-3">Salvar</button>
-        <a href="{{ url()->previous() }}" class="btn btn_voltar mt-3">Voltar</a>
+        <div class="botoes">
+
+            <button type="submit" class="btn btn-envia mt-3">Salvar</button>
+            <a href="{{ url()->previous() }}" class="btn btn_voltar mt-3">Voltar</a>
+
+        </div>
 
     </form>
 </div>

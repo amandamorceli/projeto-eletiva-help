@@ -21,7 +21,7 @@ class HistoricosChamado extends Model
         return $this->belongsTo(User::class, 'n_cod_usuario_inc');
     }
 
-    protected $casts = [
-        'f_status' => StatusChamado::class,
-    ];
+    // protected $casts = [
+    //     'f_status' => StatusChamado::class,
+    // ];
 }

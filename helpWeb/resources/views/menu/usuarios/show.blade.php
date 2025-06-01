@@ -14,6 +14,17 @@
     }
 
     .btn-envia {
+        background-color: #ce1b1b !important;
+        color: #fff !important;
+        transition: all ease-in-out 0.3s !important;
+
+        &:hover {
+            background-color: #9a1313 !important;
+            color: #fff !important;
+        }
+    }
+    
+    .btn_voltar{
         background-color: #4e59dd !important;
         color: #fff !important;
         transition: all ease-in-out 0.3s !important;
@@ -22,6 +33,16 @@
             background-color: #2e347b !important;
             color: #fff !important;
         }
+    }
+
+    .btn-envia, .btn_voltar{
+        width: 40%;
+    }
+
+    .botoes {
+        display: flex;
+        justify-content: space-evenly;
+        width: 40%;
     }
 </style>
 
@@ -112,7 +133,7 @@
             <div class="mb-3" style="width: 48%">
 
                 <label for="f_tipo_usuario" class="form-label">Tipo Pessoa</label>
-                <select class="form-select" id="f_tipo_usuario" name="f_tipo_fj">
+                <select class="form-select" id="f_tipo_usuario" name="f_tipo_fj" disabled>
                 <option selected disabled>Selecione um solicitante...</option>
                     <option {{$usuario->f_tipo_fj == "F" ? "selected" : ""}} value="F">Física</option>
                     <option {{$usuario->f_tipo_fj == "J" ? "selected" : ""}} value="J">Jurídica</option>
@@ -123,7 +144,7 @@
             <div class="mb-3" style="width: 48%">
                 <label for="status" class="form-label">Tipo usuário</label>
                 
-                <select class="form-select" id="status" name="f_tipo_usuario">
+                <select class="form-select" id="status" name="f_tipo_usuario" disabled>
 
                     <option selected disabled>Selecione o tipo usuario...</option>
 
@@ -134,7 +155,12 @@
 
             <input type="hidden" name="n_cod_usuario_inc" value="1">
 
-            <button type="submit" class="btn btn-envia mt-3">Excluir usuário</button>
+            <div class="botoes">
+
+                <button type="submit" class="btn btn-envia mt-3">Excluir usuário</button>
+                <a href="{{ url()->previous() }}" class="btn btn_voltar mt-3">Voltar</a>
+
+            </div>
 
         </form>
     </div>

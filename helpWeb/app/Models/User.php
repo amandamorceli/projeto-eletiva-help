@@ -34,8 +34,8 @@ class User extends Authenticatable
         'c_estado',
         'd_inicio',
         'd_fim',
-        'n_cod_usuario_inc',
-        'd_inclusao'
+        // 'n_cod_usuario_inc',
+        // 'd_inclusao'
     ];
 
     /**

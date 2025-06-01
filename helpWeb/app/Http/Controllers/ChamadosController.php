@@ -8,7 +8,6 @@ use Illuminate\Support\Facades\Log;
 use App\Models\Chamado;
 use App\Models\Categoria;
 use App\Models\User;
-use App\Constants\StatusDoChamado;
 
 class ChamadosController extends Controller
 {
@@ -49,7 +48,11 @@ class ChamadosController extends Controller
     {
         try {
 
-            Chamado::create($request->all());
+            $chamado = $request->all();
+
+            $chamado['f_status'] = 1;
+
+            Chamado::create($chamado);
             
             return redirect()->route('chamados.index')->with('sucesso', 'Chamado criado com sucesso!');
 
@@ -105,14 +108,19 @@ class ChamadosController extends Controller
     {
         try {
             $chamado = Chamado::findOrFail($id);
+
             $chamado->update($request->all());
+
             return redirect()->route('chamados.index')->with('sucesso', 'Chamado alterado com sucesso!');
+
         } catch (Exception $e) {
+            
             Log::error("Erro ao atualizar o chamado:" . $e->getMessage(), [
                 'stack' => $e->getTraceAsString(),
                 'chamado_id' => $id,
                 'request' => $request->all()
             ]);
+            
             return redirect()->route('chamados.index')->with('erro', 'Erro ao alterar o chamado!');
         }
     }
@@ -134,4 +142,12 @@ class ChamadosController extends Controller
             return redirect()->route('chamados.index')->with('erro', 'Erro ao excluir o chamado!');
         }
     }
+
+    public function filtrarPorStatus($status)
+    {
+        $chamados = Chamado::where('f_status', $status)->get();
+
+        return view('menu.chamados.index', compact('chamados', 'status'));
+    }
+
 }

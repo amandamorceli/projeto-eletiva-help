@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- <link rel="stylesheet" href="{{ asset('css/login.css') }}"> -->
+    @yield('css')
 </head>
 
 <style>
@@ -72,10 +73,11 @@
 
 <body>
 
+    <!-- menu tecnico -->
     <!-- Sidebar -->
     <div class="sidebar">
         <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <span class="fs-4"><i class="fas fa-tools"></i> Painel</span>
+            <span class="fs-4"><i class="fas fa-tools"></i> &nbsp; Painel</span>
         </a>
         <hr>
 
@@ -83,12 +85,12 @@
         <ul class="nav nav-pills flex-column">
             <li>
                 <a href="/usuarios/create" class="nav-link text-white">
-                    <i class="fas fa-user-plus"></i> Inserir Usuário
+                    <i class="fas fa-user-plus"></i> &nbsp; Inserir Usuário
                 </a>
             </li>
             <li>
                 <a href="/usuarios/" class="nav-link text-white">
-                    <i class="fas fa-users"></i> Usuários
+                    <i class="fas fa-users"></i> &nbsp; Usuários
                 </a>
             </li>
         </ul>
@@ -96,35 +98,49 @@
         <hr>
 
         <h6 class="text-uppercase text-secondary">Chamados</h6>
+
         <ul class="nav nav-pills flex-column mb-3">
             <li class="nav-item">
-                <a href="/chamados/create" class="nav-link text-white">
-                    <i class="fas fa-plus-circle"></i> Inserir Chamado
+                <a href="{{ route('chamados.create') }}" class="nav-link text-white">
+                    <i class="fas fa-plus-circle"></i> &nbsp; Inserir Chamado
                 </a>
             </li>
             <li>
-                <a href="/chamados/" class="nav-link text-white">
-                    <i class="fas fa-inbox"></i> Chamados
-                </a>
-            </li>
-            <!-- <li>
-                <a href="#" class="nav-link text-white">
-                    <i class="fas fa-calendar-check"></i> Chamados Agendados
+                <a href="/chamados" class="nav-link text-white">
+                    <i class="fa-solid fa-globe"></i> &nbsp; Todos
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
-                    <i class="fas fa-check-circle"></i> Finalizados
+                <a href="{{ route('chamados.filtrar', '1') }}" class="nav-link text-white">
+                    <i class="fas fa-inbox"></i> &nbsp; Novos Chamados
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link text-white">
-                    <i class="fas fa-trash-alt"></i> Excluídos
+                <a href="{{ route('chamados.filtrar', '2') }}" class="nav-link text-white">
+                    <i class="fas fa-calendar-check"></i> &nbsp; Em atendimento
                 </a>
-            </li> -->
+            </li>
+            <li>
+                <a href="{{ route('chamados.filtrar', '3') }}" class="nav-link text-white">
+                    <i class="fas fa-check-circle"></i> &nbsp; Em Validação
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('chamados.filtrar', '4') }}" class="nav-link text-white">
+                    <i class="fa-solid fa-check"></i> &nbsp; Finalizados
+                </a>
+            </li>
         </ul>
 
         <hr>
+
+        <ul class="nav nav-pills flex-column mb-3">
+            <li>
+                <a href="/sair" class="nav-link text-white">
+                    <i class="fa-solid fa-arrow-left"></i> &nbsp; Sair
+                </a>
+            </li>
+        </ul>
     </div>
 
     <!-- Content Area -->

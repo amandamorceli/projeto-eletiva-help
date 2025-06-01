@@ -24,6 +24,13 @@ Route::middleware('auth')->group(function () {
         return view('help');
     });
 
+    Route::get('/sair', function () {
+        return view('login.login');
+    });
+    Route::get('/', function () {
+        return view('help');
+    });
+
     Route::get('/help', function () {
         return view('help');
     });
@@ -36,3 +43,5 @@ Route::middleware('auth')->group(function () {
         return view('menu.chamados.show');
     });
 });
+
+Route::get('/chamados/status/{status}', [ChamadosController::class, 'filtrarPorStatus'])->name('chamados.filtrar');

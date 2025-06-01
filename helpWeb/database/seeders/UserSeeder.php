@@ -25,7 +25,7 @@ class UserSeeder extends Seeder
             'c_cpf_cnpj' => '00000000000',
             'c_rg' => '0000000',
             'f_tipo_fj' => 'F', // F = Física, J = Jurídica (presumo)
-            'f_tipo_usuario' => 'T', // A = Admin, T = Técnico, U = Usuário (exemplo)
+            'f_tipo_usuario' => 'T', // T = Técnico, U = Usuário (exemplo)
             'n_cep' => 12345678,
             'c_endereco' => 'Rua Exemplo',
             'c_numero_endereco' => '100',
@@ -34,8 +34,8 @@ class UserSeeder extends Seeder
             'c_estado' => 'EX',
             'd_inicio' => Carbon::now(),
             'd_fim' => null,
-            'n_cod_usuario_inc' => 1,
-            'd_inclusao' => Carbon::now()
+            // 'n_cod_usuario_inc' => 1,
+            // 'd_inclusao' => Carbon::now()
         ]);
 
         User::create([
@@ -55,8 +55,8 @@ class UserSeeder extends Seeder
             'c_estado' => 'TC',
             'd_inicio' => Carbon::now(),
             'd_fim' => null,
-            'n_cod_usuario_inc' => 1,
-            'd_inclusao' => Carbon::now()
+            // 'n_cod_usuario_inc' => 1,
+            // 'd_inclusao' => Carbon::now()
         ]);
 
         // Usuário comum
@@ -77,8 +77,8 @@ class UserSeeder extends Seeder
             'c_estado' => 'CN',
             'd_inicio' => Carbon::now(),
             'd_fim' => null,
-            'n_cod_usuario_inc' => 1,
-            'd_inclusao' => Carbon::now()
+            // 'n_cod_usuario_inc' => 1,
+            // 'd_inclusao' => Carbon::now()
         ]);
     }
 }
