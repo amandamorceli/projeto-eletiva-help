@@ -15,15 +15,23 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credenciais = $request->only('c_login', 'c_senha');
-        $request->validate(['c_login' => 'required|c_login', 'c_senha' => 'required']);
-        
+        $request->validate(['c_login' => 'required', 'c_senha' => 'required']);
+
         if (Auth::attempt($credenciais)) {
             $request->session()->regenerate();
-            // adcionar lógica se ao fazer login, acessos forem diferentes
-            return redirect()->intended('help');
+            $user = Auth::user();
+
+            if ($user->f_tipo_usuario === 'U') {
+                return redirect()->intended('/help');
+            } elseif ($user->f_tipo_usuario === 'T') {
+                return redirect()->intended('/chamados.show');
+            }
+
+            Auth::logout();
+            return redirect('/login')->withErrors(['access' => 'Nível de usuário inválido! Entre em contato com o administrador.']);
         }
 
-        return back()->withErrors(['login'=>'As credenciais fornecidas estão incorretas!']);
+        return back()->withErrors(['login' => 'As credenciais fornecidas estão incorretas!']);
     }
 
     public function logout(Request $request)
@@ -33,7 +41,5 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/login');
-
     }
-    
 }

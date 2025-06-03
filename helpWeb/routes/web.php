@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
-use App\Models\User;
-use App\Models\Chamado;
 use App\Http\Controllers\ChamadosController;
 use App\Http\Controllers\UsersController;
+use App\Http\Middleware\TecnicoMiddleware;
+use App\Http\Middleware\UsuarioMiddleware;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -18,30 +19,36 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+
+//acesso autenticado
 Route::middleware('auth')->group(function () {
-
-    Route::get('/', function () {
-        return view('help');
-    });
-
-    Route::get('/sair', function () {
-        return view('login.login');
-    });
-    Route::get('/', function () {
-        return view('help');
-    });
 
     Route::get('/help', function () {
         return view('help');
     });
 
-    Route::resource('usuarios', UsersController::class);
+    Route::post('/logout', [AuthController::class, 'logout']);
+
+    //acessos para usuário técnico
+    Route::middleware([TecnicoMiddleware::class])->group(function () {
+
+        Route::get('/chamados/status/{status}', [ChamadosController::class, 'filtrarPorStatus'])->name('chamados.filtrar');
+
+        Route::resource('usuarios', UsersController::class);
+
+        Route::get('/chamados/show', function () {
+            return view('menu.chamados.show');
+        });
+    });
+
+    //acesso para usuário comum
+    Route::middleware([UsuarioMiddleware::class])->group(function () {});
+
+    Route::get('/', function () {
+        return view('help');
+    });
 
     Route::resource('chamados', ChamadosController::class);
-
-    Route::get('/chamados/show', function () {
-        return view('menu.chamados.show');
-    });
 });
-
-Route::get('/chamados/status/{status}', [ChamadosController::class, 'filtrarPorStatus'])->name('chamados.filtrar');

@@ -59,4 +59,14 @@ class User extends Authenticatable
         'd_inclusao' => 'datetime',
         'c_senha' => 'hashed',
     ];
+
+    public function username()
+    {
+        return 'c_login';
+    }
+
+    public function getAuthPassword()
+    {
+        return $this->c_senha;
+    }
 }

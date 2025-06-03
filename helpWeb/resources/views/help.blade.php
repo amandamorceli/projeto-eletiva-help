@@ -12,14 +12,14 @@
 </head>
 
 <style>
-
     body {
         height: 100vh;
         width: 100vw;
         background: linear-gradient(166deg, #70377e, #a474af, #d5c5d8);
         margin: 0;
         display: flex;
-        flex-direction: row; /* Disposição lado a lado (menu + conteúdo) */
+        flex-direction: row;
+        /* Disposição lado a lado (menu + conteúdo) */
     }
 
     .nav-link:hover {
@@ -53,8 +53,10 @@
 
     /* Estilos do conteúdo principal */
     .content-area {
-        margin-left: 250px; /* Faz o conteúdo começar após a sidebar */
-        flex: 1; /* Faz o conteúdo preencher o espaço restante */
+        margin-left: 250px;
+        /* Faz o conteúdo começar após a sidebar */
+        flex: 1;
+        /* Faz o conteúdo preencher o espaço restante */
         padding: 20px;
         overflow-y: auto;
     }
@@ -81,13 +83,16 @@
         </a>
         <hr>
 
+
         <h6 class="text-uppercase text-secondary">Usuários</h6>
         <ul class="nav nav-pills flex-column">
+            @if(Auth::check() && Auth::user()->f_tipo_usuario === 'T')
             <li>
                 <a href="/usuarios/create" class="nav-link text-white">
                     <i class="fas fa-user-plus"></i> &nbsp; Inserir Usuário
                 </a>
             </li>
+            @endif
             <li>
                 <a href="/usuarios/" class="nav-link text-white">
                     <i class="fas fa-users"></i> &nbsp; Usuários
@@ -96,7 +101,7 @@
         </ul>
 
         <hr>
-
+        @if(Auth::check())
         <h6 class="text-uppercase text-secondary">Chamados</h6>
 
         <ul class="nav nav-pills flex-column mb-3">
@@ -105,6 +110,7 @@
                     <i class="fas fa-plus-circle"></i> &nbsp; Inserir Chamado
                 </a>
             </li>
+            @if(Auth::check() && Auth::user()->f_tipo_usuario === 'T')
             <li>
                 <a href="/chamados" class="nav-link text-white">
                     <i class="fa-solid fa-globe"></i> &nbsp; Todos
@@ -130,7 +136,9 @@
                     <i class="fa-solid fa-check"></i> &nbsp; Finalizados
                 </a>
             </li>
+            @endif
         </ul>
+        @endif
 
         <hr>
 
@@ -142,6 +150,7 @@
             </li>
         </ul>
     </div>
+
 
     <!-- Content Area -->
     <div class="content-area">

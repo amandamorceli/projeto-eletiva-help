@@ -12,19 +12,21 @@
 </head>
 
 <style>
-
     body {
         height: 100vh;
         width: 100vw;
         background: linear-gradient(166deg, #70377e, #a474af, #d5c5d8);
         margin: 0;
         display: flex;
-        flex-direction: row; /* Disposição lado a lado (menu + conteúdo) */
+        flex-direction: row;
+        /* Disposição lado a lado (menu + conteúdo) */
     }
 
     .content-area {
-        margin-left: 0px; /* Faz o conteúdo começar após a sidebar */
-        flex: 1; /* Faz o conteúdo preencher o espaço restante */
+        margin-left: 0px;
+        /* Faz o conteúdo começar após a sidebar */
+        flex: 1;
+        /* Faz o conteúdo preencher o espaço restante */
         padding: 20px;
         overflow-y: hi;
     }
@@ -51,24 +53,28 @@
         max-width: 400px;
         color: black;
     }
+
     .login-container h3 {
         margin-bottom: 1.5rem;
     }
+
     .input-group-text {
         background: #6a11cb;
         color: white;
     }
+
     .btn-primary {
         background: #6a11cb;
         border: none;
     }
+
     .btn-primary:hover {
         background: #2575fc;
     }
 </style>
 
 <body>
-    
+
     <div class="content-area">
 
         <div class="container">
@@ -76,27 +82,36 @@
             <div class="login-container">
                 <h3><i class="fas fa-user-circle"></i> Bem-vindo</h3>
                 <p>Acesse sua conta para continuar</p>
-                
-                <form method="POST" action="">
+
+                <form method="POST" action="/login">
                     @csrf
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
                         <input type="text" class="form-control" name="c_login" placeholder="Digite seu login" required>
                     </div>
-                    
+
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fas fa-lock"></i></span>
                         <input type="password" class="form-control" name="c_senha" placeholder="Digite sua senha" required>
                     </div>
-                    
+
                     <button type="submit" class="btn btn-primary w-100 mt-3">Entrar <i class="fas fa-sign-in-alt"></i></button>
                 </form>
-                
+
                 <p class="mt-3"><a href="" class="text-decoration-none">Esqueceu sua senha?</a></p>
+
+                @if ($errors->any())
+                <div class="alert alert-danger">
+
+                    @foreach($errors->all() as $error)
+                    <p>{{$error}}</p>
+                    @endforeach
+
+                </div>
+                @endif
             </div>
         </div>
 
-    </div> 
+    </div>
 
 </body>
-
