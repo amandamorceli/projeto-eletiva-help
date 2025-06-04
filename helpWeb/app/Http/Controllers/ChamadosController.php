@@ -16,7 +16,7 @@ class ChamadosController extends Controller
      */
     public function index()
     {
-        $tecnicos = User::where('f_tipo_usuario', 'T')->get();
+        $tecnicos = User::where('tipo_usuario', 'T')->get();
 
         $usuarios = User::all();
 
@@ -32,7 +32,7 @@ class ChamadosController extends Controller
      */
     public function create()
     {
-        $tecnicos = User::where('f_tipo_usuario', 'T')->get();
+        $tecnicos = User::where('tipo_usuario', 'T')->get();
 
         $usuarios = User::all();
 
@@ -50,7 +50,7 @@ class ChamadosController extends Controller
 
             $chamado = $request->all();
 
-            $chamado['f_status'] = 1;
+            $chamado['status'] = 1;
 
             Chamado::create($chamado);
             
@@ -75,7 +75,7 @@ class ChamadosController extends Controller
     {
         $chamado = Chamado::findOrFail($id);
 
-        $tecnicos = User::where('f_tipo_usuario', 'T')->get();
+        $tecnicos = User::where('tipo_usuario', 'T')->get();
 
         $usuarios = User::all();
 
@@ -92,7 +92,7 @@ class ChamadosController extends Controller
 
         $chamado = Chamado::findOrFail($id);
 
-        $tecnicos = User::where('f_tipo_usuario', 'T')->get();
+        $tecnicos = User::where('tipo_usuario', 'T')->get();
 
         $usuarios = User::all();
 
@@ -145,7 +145,7 @@ class ChamadosController extends Controller
 
     public function filtrarPorStatus($status)
     {
-        $chamados = Chamado::where('f_status', $status)->get();
+        $chamados = Chamado::where('status', $status)->get();
 
         return view('menu.chamados.index', compact('chamados', 'status'));
     }

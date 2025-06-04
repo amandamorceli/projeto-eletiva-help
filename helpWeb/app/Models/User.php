@@ -18,23 +18,23 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'c_login',
-        'c_senha',
-        'c_nome_completo',
-        'c_nome_resumido',
-        'c_cpf_cnpj',
-        'c_rg',
-        'f_tipo_fj',
-        'f_tipo_usuario',
-        'n_cep',
-        'c_endereco',
-        'c_numero_endereco',
-        'c_bairo',
-        'c_cidade',
-        'c_estado',
+        'login',
+        'senha',
+        'nome_completo',
+        'nome_resumido',
+        'cpf_cnpj',
+        'rg',
+        'tipo_fj',
+        'tipo_usuario',
+        'cep',
+        'endereco',
+        'numero_endereco',
+        'bairo',
+        'cidade',
+        'estado',
         'd_inicio',
         'd_fim',
-        // 'n_cod_usuario_inc',
+        // 'cod_usuario_inc',
         // 'd_inclusao'
     ];
 
@@ -44,7 +44,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'c_senha',
+        'senha',
         'remember_token',
     ];
 
@@ -57,16 +57,16 @@ class User extends Authenticatable
         'd_inicio' => 'datetime',
         'd_fim' => 'datetime',
         'd_inclusao' => 'datetime',
-        'c_senha' => 'hashed',
+        'senha' => 'hashed',
     ];
 
     public function getAuthIdentifierName()
     {
-        return 'c_login';
+        return 'login';
     }
 
     public function getAuthPassword()
     {
-        return $this->c_senha;
+        return $this->senha;
     }
 }

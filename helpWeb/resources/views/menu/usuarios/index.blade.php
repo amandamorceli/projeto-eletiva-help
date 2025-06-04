@@ -52,9 +52,9 @@
                     </span>	
 
                 </td>
-                <td>{{ $u->c_login}}</td>
-                <td>{{ $u->c_nome_resumido}}</td>
-                <td>{{ $u->f_tipo_usuario == "T" ? "Técnico" : "Usuário"}}</td>
+                <td>{{ $u->login}}</td>
+                <td>{{ $u->nome_resumido}}</td>
+                <td>{{ $u->tipo_usuario == "T" ? "Técnico" : "Usuário"}}</td>
                 <td style="text-align: center;">{{ date('d/m/Y', strtotime($u->d_inicio)) }}</td>
                 <!-- <td>{{ $u->d_inclusao}}</td> -->
 

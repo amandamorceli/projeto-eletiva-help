@@ -87,12 +87,12 @@
                     @csrf
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        <input type="text" class="form-control" name="c_login" placeholder="Digite seu login" required>
+                        <input type="text" class="form-control" name="login" placeholder="Digite seu login" required>
                     </div>
 
                     <div class="input-group mb-3">
                         <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                        <input type="password" class="form-control" name="c_senha" placeholder="Digite sua senha" required>
+                        <input type="password" class="form-control" name="senha" placeholder="Digite sua senha" required>
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100 mt-3">Entrar <i class="fas fa-sign-in-alt"></i></button>

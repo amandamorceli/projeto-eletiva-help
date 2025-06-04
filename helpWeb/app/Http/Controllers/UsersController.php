@@ -51,17 +51,17 @@ class UsersController extends Controller
             $ultimoSobrenome = strtolower($partesSobrenome[count($partesSobrenome) - 1]);
 
             // Monta o nome completo com o primeiro nome e último sobrenome
-            $dados['c_nome_completo'] = $primeiroNomeCompleto . " " . $sobrenomeCompleto;
+            $dados['nome_completo'] = $primeiroNomeCompleto . " " . $sobrenomeCompleto;
 
             // Nome resumido = só o primeiro nome
-            $dados['c_nome_resumido'] = $primeiroNomeCompleto;
+            $dados['nome_resumido'] = $primeiroNomeCompleto;
 
             // Login vazio, como antes
-            $dados['c_login'] = $primeiroNome . '.' . $ultimoSobrenome;
+            $dados['login'] = $primeiroNome . '.' . $ultimoSobrenome;
 
-            $dados['n_cep'] = str_replace('-', '', $dados['n_cep']);
+            $dados['cep'] = str_replace('-', '', $dados['cep']);
 
-            $dados['c_senha'] = 'help$' . date('Y') . '$';
+            $dados['senha'] = 'help$' . date('Y') . '$';
 
             User::create($dados);
             

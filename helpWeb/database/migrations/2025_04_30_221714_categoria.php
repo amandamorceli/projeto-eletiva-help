@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('categoria', function (Blueprint $table) {
             $table->id();
-            $table->integer('f_status')->default(1);
-            $table->text('c_comentario');
-            $table->unsignedBigInteger('n_cod_usuario_inc');
-            $table->foreign('n_cod_usuario_inc')->references('id')->on('users')->onDelete('restrict');
+            $table->integer('status')->default(1);
+            $table->text('comentario');
+            $table->unsignedBigInteger('cod_usuario_inc');
+            $table->foreign('cod_usuario_inc')->references('id')->on('users')->onDelete('restrict');
             $table->timestamps();
         });
     }

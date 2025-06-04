@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const cepInput = document.getElementById('n_cep');
+    const cepInput = document.getElementById('cep');
 
     if (!cepInput) {
-        console.warn('Campo #n_cep não encontrado.');
+        console.warn('Campo #cep não encontrado.');
         return;
     }
 
@@ -31,10 +31,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 return;
             }
 
-            document.getElementById('c_endereco').value = data.logradouro || '';
-            document.getElementById('c_bairo').value = data.bairro || '';
-            document.getElementById('c_cidade').value = data.localidade || '';
-            document.getElementById('c_estado').value = data.uf || '';
+            document.getElementById('endereco').value = data.logradouro || '';
+            document.getElementById('bairo').value = data.bairro || '';
+            document.getElementById('cidade').value = data.localidade || '';
+            document.getElementById('estado').value = data.uf || '';
 
         } catch (error) {
             console.error("Erro ao buscar o endereço:", error);

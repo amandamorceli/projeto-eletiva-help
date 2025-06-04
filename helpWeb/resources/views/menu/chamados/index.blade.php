@@ -110,7 +110,7 @@
 
                                 @if ($chamado->solicitante)
 
-                                    {{ $chamado->solicitante->c_nome_resumido }}
+                                    {{ $chamado->solicitante->nome_resumido }}
 
                                 @else
 
@@ -129,7 +129,7 @@
 
                                 @if ($chamado->tecnico)
 
-                                    {{ $chamado->tecnico->c_nome_resumido }}
+                                    {{ $chamado->tecnico->nome_resumido }}
 
                                 @else
 

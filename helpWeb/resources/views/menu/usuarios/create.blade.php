@@ -59,56 +59,56 @@
             <div class="mb-3" style="width: 48%">
 
                 <label for="cpfcnpj" class="form-label">CPF/CNPJ</label>
-                <input type="text" class="form-control" id="cpfcnpj" name="c_cpf_cnpj" required>
+                <input type="text" class="form-control" id="cpfcnpj" name="cpf_cnpj" required>
 
             </div>
 
             <div class="mb-3" style="width: 48%">
 
                 <label for="rg" class="form-label">RG</label>
-                <input type="text" class="form-control" id="rg" name="c_rg" required>
+                <input type="text" class="form-control" id="rg" name="rg" required>
 
             </div>
 
             <div class="mb-3" style="width: 48%">
 
-                <label for="n_cep" class="form-label">CEP</label>
-                <input type="text" class="form-control" id="n_cep" name="n_cep" required>
+                <label for="cep" class="form-label">CEP</label>
+                <input type="text" class="form-control" id="cep" name="cep" required>
 
             </div>
 
             <div class="mb-3" style="width: 48%">
 
-                <label for="c_numero_endereco" class="form-label">Numero</label>
-                <input type="text" class="form-control" id="c_numero_endereco" name="c_numero_endereco" required>
+                <label for="numero_endereco" class="form-label">Numero</label>
+                <input type="text" class="form-control" id="numero_endereco" name="numero_endereco" required>
 
             </div>
 
             <div class="mb-3" style="width: 48%">
 
-                <label for="c_endereco" class="form-label">Endereço</label>
-                <input type="text" class="form-control" id="c_endereco" name="c_endereco" required readonly>
+                <label for="endereco" class="form-label">Endereço</label>
+                <input type="text" class="form-control" id="endereco" name="endereco" required readonly>
 
             </div>
             
             <div class="mb-3" style="width: 48%">
 
-                <label for="c_bairo" class="form-label">Bairro</label>
-                <input type="text" class="form-control" id="c_bairo" name="c_bairo" required readonly>
+                <label for="bairo" class="form-label">Bairro</label>
+                <input type="text" class="form-control" id="bairo" name="bairo" required readonly>
 
             </div>
 
             <div class="mb-3" style="width: 48%">
 
-                <label for="c_cidade" class="form-label">Cidade</label>
-                <input type="text" class="form-control" id="c_cidade" name="c_cidade" required readonly>
+                <label for="cidade" class="form-label">Cidade</label>
+                <input type="text" class="form-control" id="cidade" name="cidade" required readonly>
 
             </div>
 
             <div class="mb-3" style="width: 48%">
 
-                <label for="c_estado" class="form-label">Estado</label>
-                <input type="text" class="form-control" id="c_estado" name="c_estado" required readonly>
+                <label for="estado" class="form-label">Estado</label>
+                <input type="text" class="form-control" id="estado" name="estado" required readonly>
 
             </div>
 
@@ -116,8 +116,8 @@
 
             <div class="mb-3" style="width: 48%">
 
-                <label for="f_tipo_fj" class="form-label">Tipo Pessoa</label>
-                <select class="form-select" id="f_tipo_fj" name="f_tipo_fj">
+                <label for="tipo_fj" class="form-label">Tipo Pessoa</label>
+                <select class="form-select" id="tipo_fj" name="tipo_fj">
                     <option selected disabled>Selecione um solicitante...</option>
                     <option value="F">Física</option>
                     <option value="J">Jurídica</option>
@@ -126,9 +126,9 @@
             </div>
 
             <div class="mb-3" style="width: 48%">
-                <label for="f_tipo_usuario" class="form-label">Tipo usuário</label>
+                <label for="tipo_usuario" class="form-label">Tipo usuário</label>
                 
-                <select class="form-select" id="f_tipo_usuario" name="f_tipo_usuario">
+                <select class="form-select" id="tipo_usuario" name="tipo_usuario">
 
                     <option selected disabled>Selecione o tipo usuario...</option>
 
@@ -137,13 +137,13 @@
                 </select>
             </div>
 
-            <input type="hidden" name="n_cod_usuario_inc" value="1">
+            <input type="hidden" name="cod_usuario_inc" value="1">
 
             <div class="botoes">
 
                 <button type="submit" class="btn btn-envia mt-3">Cadastrar Usuário</button>
 
-                <a href="{{ url()->previous() }}" class="btn btn_voltar mt-3">Voltar</a>
+                <a href="{{ url()->previous() }}" class="btn btvoltar mt-3">Voltar</a>
 
             </div>
 

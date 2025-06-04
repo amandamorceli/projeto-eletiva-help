@@ -13,20 +13,20 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('c_login')->unique();
-            $table->string('c_senha')->nullable();
-            $table->string('c_nome_completo');
-            $table->string('c_nome_resumido');
-            $table->string('c_cpf_cnpj');
-            $table->string('c_rg');
-            $table->string('f_tipo_fj');
-            $table->string('f_tipo_usuario');
-            $table->integer('n_cep');
-            $table->string('c_endereco');
-            $table->string('c_numero_endereco');
-            $table->string('c_bairo');
-            $table->string('c_cidade');
-            $table->string('c_estado');
+            $table->string('login')->unique();
+            $table->string('senha')->nullable();
+            $table->string('nome_completo');
+            $table->string('nome_resumido');
+            $table->string('cpf_cnpj');
+            $table->string('rg');
+            $table->string('tipo_fj');
+            $table->string('tipo_usuario');
+            $table->integer('cep');
+            $table->string('endereco');
+            $table->string('numero_endereco');
+            $table->string('bairo');
+            $table->string('cidade');
+            $table->string('estado');
             $table->dateTime('d_inicio')->default(date('Y-m-d'));
             $table->dateTime('d_fim')->nullable();    
             // $table->integer('n_cod_usuario_inc');

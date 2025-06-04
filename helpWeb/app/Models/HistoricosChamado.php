@@ -10,18 +10,18 @@ class HistoricosChamado extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['n_cod_chamado'
-    , 'f_status'
-    , 'c_comentario'
-    , 'n_cod_usuario_inc'
+    protected $fillable = ['cod_chamado'
+    , 'status'
+    , 'comentario'
+    , 'cod_usuario_inc'
     ];
 
     public function usuarioInclusao()
     {
-        return $this->belongsTo(User::class, 'n_cod_usuario_inc');
+        return $this->belongsTo(User::class, 'cod_usuario_inc');
     }
 
     // protected $casts = [
-    //     'f_status' => StatusChamado::class,
+    //     'status' => StatusChamado::class,
     // ];
 }

@@ -11,45 +11,45 @@ class Chamado extends Model
     use HasFactory;
 
     protected $fillable = [
-        'n_cod_tecnico',
-        'n_cod_solicitante',
+        'cod_tecnico',
+        'cod_solicitante',
         'titulo',
         'descricao',
-        'f_status',
-        'n_categoria',
-        // 'n_cod_usuario_inc',
-        // 'n_cod_usuario_alt',
+        'status',
+        'categoria',
+        // 'cod_usuario_inc',
+        // 'cod_usuario_alt',
         'd_inclusao'
     ];
 
     public function tecnico()
     {
-        return $this->belongsTo(User::class, 'n_cod_tecnico');
+        return $this->belongsTo(User::class, 'cod_tecnico');
     }
 
     public function solicitante()
     {
-        return $this->belongsTo(User::class, 'n_cod_solicitante');
+        return $this->belongsTo(User::class, 'cod_solicitante');
     }
 
     public function usuarioInclusao()
     {
-        return $this->belongsTo(User::class, 'n_cod_usuario_inc');
+        return $this->belongsTo(User::class, 'cod_usuario_inc');
     }
 
     public function usuarioAlteracao()
     {
-        return $this->belongsTo(User::class, 'n_cod_usuario_alt');
+        return $this->belongsTo(User::class, 'cod_usuario_alt');
     }
 
     public function categoriaDoChamado()
     {
-        return $this->belongsTo(Categoria::class, 'n_categoria');
+        return $this->belongsTo(Categoria::class, 'categoria');
     }
 
     public function getStatusNomeAttribute()
     {
-        switch ($this->f_status) {
+        switch ($this->status) {
             case 1:
                 return "Novo Chamado";
                 break;

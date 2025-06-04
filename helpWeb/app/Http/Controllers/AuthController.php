@@ -18,23 +18,23 @@ class AuthController extends Controller
     {
         // Validação dos campos
         $request->validate([
-            'c_login' => 'required',
-            'c_senha' => 'required'
+            'login' => 'required',
+            'senha' => 'required'
         ]);
 
         // Busca o usuário pelo login
-        $user = User::where('c_login', $request->c_login)->first();
+        $user = User::where('login', $request->login)->first();
 
         // Verifica se o usuário existe e a senha está correta
-        if ($user && Hash::check($request->c_senha, $user->c_senha)) {
+        if ($user && Hash::check($request->senha, $user->senha)) {
             
             Auth::login($user);
 
             $request->session()->regenerate();
 
-            if ($user->f_tipo_usuario === 'U') {
+            if ($user->tipo_usuario === 'U') {
                 return redirect()->intended('/help');
-            } elseif ($user->f_tipo_usuario === 'T') {
+            } elseif ($user->tipo_usuario === 'T') {
                 return redirect()->intended('/help');
             }
 

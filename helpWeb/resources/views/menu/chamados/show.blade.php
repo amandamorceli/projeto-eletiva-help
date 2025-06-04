@@ -60,14 +60,14 @@
 
         <div class="mb-3" style="width: 48%">
 
-            <label for="n_cod_tecnico" class="form-label">Técnico Responsável</label>
-            <select class="form-select" id="n_cod_tecnico" name="n_cod_tecnico" disabled>
+            <label for="cod_tecnico" class="form-label">Técnico Responsável</label>
+            <select class="form-select" id="cod_tecnico" name="cod_tecnico" disabled>
                 <option selected disabled>Selecione um técnico...</option>
 
                 @foreach($tecnicos as $tecnico)
 
 
-                    <option {{ $tecnico->id == $chamado->n_cod_tecnico ? "selected" : "" }}  value="{{ $tecnico->id }}">{{ $tecnico->c_nome_resumido }}</option>
+                    <option {{ $tecnico->id == $chamado->cod_tecnico ? "selected" : "" }}  value="{{ $tecnico->id }}">{{ $tecnico->nome_resumido }}</option>
 
                 @endforeach
 
@@ -76,13 +76,13 @@
 
         <div class="mb-3" style="width: 48%">
 
-            <label for="n_cod_solicitante" class="form-label">Solicitante</label>
-            <select class="form-select" id="n_cod_solicitante" name="n_cod_solicitante" disabled>
+            <label for="cod_solicitante" class="form-label">Solicitante</label>
+            <select class="form-select" id="cod_solicitante" name="cod_solicitante" disabled>
                 <option selected disabled>Selecione um solicitante...</option>
 
                 @foreach($usuarios as $usuario)
 
-                    <option {{ $usuario->id == $chamado->n_cod_solicitante ? "selected" : "" }} value="{{ $usuario->id }}">{{ $usuario->c_nome_resumido }}</option>
+                    <option {{ $usuario->id == $chamado->cod_solicitante ? "selected" : "" }} value="{{ $usuario->id }}">{{ $usuario->nome_resumido }}</option>
 
                 @endforeach
 
@@ -91,28 +91,28 @@
         </div>
 
         <div class="mb-3" style="width: 48%">
-            <label for="f_status" class="form-label">Status</label>
-            <select class="form-select" id="f_status" name="f_status" disabled>
-                <option selected disabled>Selecione um status...</option>
+            <label for="status" class="form-label">Status</label>
+            <select class="form-select" id="status" name="status" disabled>
+                <option disabled <?= is_null($chamado->status) ? 'selected' : '' ?>>Selecione um status...</option>
                 
-                <option value="1">Novo chamado</option>
-                <option value="2">Em Atendimento</option>
-                <option value="3">Em Validação</option>
-                <option value="4">Finalizado</option>
+                <option value="1" <?= $chamado->status == 1 ? 'selected' : '' ?>>Novo chamado</option>
+                <option value="2" <?= $chamado->status == 2 ? 'selected' : '' ?>>Em Atendimento</option>
+                <option value="3" <?= $chamado->status == 3 ? 'selected' : '' ?>>Em Validação</option>
+                <option value="4" <?= $chamado->status == 4 ? 'selected' : '' ?>>Finalizado</option>
 
             </select>
         </div>
 
         <div class="mb-3" style="width: 48%">
 
-            <label for="n_categoria" class="form-label">Categoria</label>
+            <label for="categoria" class="form-label">Categoria</label>
 
-            <select class="form-select" id="n_categoria" name="n_categoria" disabled>
+            <select class="form-select" id="categoria" name="categoria" disabled>
                 <option selected disabled>Selecione uma categoria...</option>
 
                 @foreach($categorias as $c)
 
-                    <option {{ $c->id == $chamado->n_categoria ? "selected" : "" }} value="{{ $c->id }}">{{$c->nome}}</option>
+                    <option {{ $c->id == $chamado->categoria ? "selected" : "" }} value="{{ $c->id }}">{{$c->nome}}</option>
 
                 @endforeach
 
@@ -134,7 +134,7 @@
 
         </div>
 
-        <input type="hidden" name="n_cod_usuario_inc" value="1">
+        <input type="hidden" name="cod_usuario_inc" value="1">
 
         <div class="botoes">
 

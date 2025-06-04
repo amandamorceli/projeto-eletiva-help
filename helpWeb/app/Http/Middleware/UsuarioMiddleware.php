@@ -16,7 +16,7 @@ class UsuarioMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || Auth::user()->f_tipo_usuario !== 'U') {
+        if (!Auth::check() || Auth::user()->tipo_usuario !== 'U') {
             return redirect('/login')->withErrors(['access' => 'Acesso negado. Você não tem permissão para acessar está página.']);
         }
         return $next($request);

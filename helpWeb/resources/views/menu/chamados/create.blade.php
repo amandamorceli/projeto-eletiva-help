@@ -19,12 +19,12 @@
 
         <div class="mb-3" style="width: 48%">
 
-            <label for="n_cod_tecnico" class="form-label">Técnico Responsável</label>
-            <select class="form-select" id="n_cod_tecnico" name="n_cod_tecnico" required>
+            <label for="cod_tecnico" class="form-label">Técnico Responsável</label>
+            <select class="form-select" id="cod_tecnico" name="cod_tecnico" required>
                 <option selected disabled>Selecione um técnico...</option>
 
                 @foreach($tecnicos as $tecnico)
-                    <option value="{{ $tecnico->id }}">{{ $tecnico->c_nome_resumido }}</option>
+                    <option value="{{ $tecnico->id }}">{{ $tecnico->nome_resumido }}</option>
                 @endforeach
 
             </select>
@@ -32,12 +32,12 @@
 
         <div class="mb-3" style="width: 48%">
 
-            <label for="n_cod_solicitante" class="form-label">Solicitante</label>
-            <select class="form-select" id="n_cod_solicitante" name="n_cod_solicitante">
+            <label for="cod_solicitante" class="form-label">Solicitante</label>
+            <select class="form-select" id="cod_solicitante" name="cod_solicitante">
                 <option selected disabled>Selecione um solicitante...</option>
 
                 @foreach($usuarios as $usuario)
-                    <option value="{{ $usuario->id }}">{{ $usuario->c_nome_resumido }}</option>
+                    <option value="{{ $usuario->id }}">{{ $usuario->nome_resumido }}</option>
                 @endforeach
 
             </select>
@@ -45,8 +45,8 @@
         </div>
 
         <div class="mb-3" style="width: 48%">
-            <label for="f_status" class="form-label">Status</label>
-            <select class="form-select" id="f_status" name="f_status">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-select" id="status" name="status">
                 <option selected disabled>Selecione um status...</option>
                 
                 <option value="1">Novo chamado</option>
@@ -59,9 +59,9 @@
 
         <div class="mb-3" style="width: 48%">
 
-            <label for="n_categoria" class="form-label">Categoria</label>
+            <label for="categoria" class="form-label">Categoria</label>
 
-            <select class="form-select" id="n_categoria" name="n_categoria">
+            <select class="form-select" id="categoria" name="categoria">
                 <option selected disabled>Selecione uma categoria...</option>
 
                 @foreach($categorias as $c)
@@ -88,7 +88,7 @@
 
         </div>
 
-        <input type="hidden" name="n_cod_usuario_inc" value="1">
+        <input type="hidden" name="cod_usuario_inc" value="1">
 
         <div class="botoes">
 

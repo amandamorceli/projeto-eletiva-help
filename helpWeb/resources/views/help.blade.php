@@ -83,7 +83,7 @@
         </a>
         <hr>
 
-        @if(Auth::check() && Auth::user()->f_tipo_usuario === 'T')
+        @if(Auth::check() && Auth::user()->tipo_usuario === 'T')
         <h6 class="text-uppercase text-secondary">Usuários</h6>
         <ul class="nav nav-pills flex-column">
             
@@ -112,7 +112,7 @@
                     <i class="fas fa-plus-circle"></i> &nbsp; Inserir Chamado
                 </a>
             </li>
-            @if(Auth::check() && Auth::user()->f_tipo_usuario === 'T')
+            @if(Auth::check() && Auth::user()->tipo_usuario === 'T')
             <li>
                 <a href="/chamados" class="nav-link text-white">
                     <i class="fa-solid fa-globe"></i> &nbsp; Todos
