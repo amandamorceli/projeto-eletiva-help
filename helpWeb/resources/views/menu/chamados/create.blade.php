@@ -1,3 +1,7 @@
+<?php
+
+use Illuminate\Support\Facades\Auth;
+?>
 @extends('help')
 
 @section('css')
@@ -8,6 +12,12 @@
 
 @section('conteudo')
 
+@php
+
+    $isTecnico = Auth::user()->tipo_usuario === 'T';
+
+@endphp
+
 <div class="form-container">
 
     <h3 class="text-left text-dark ms-3">📄 Novo Chamado</h3>
@@ -17,7 +27,7 @@
     <form method="POST" class="mt-4" style="display: flex; flex-wrap: wrap; justify-content: space-around;" action="/chamados">
         @csrf
 
-        @if(Auth::check() && Auth::user()->tipo_usuario === 'T')
+        @if($isTecnico)
         <div class="mb-3" style="width: 48%">
 
             <label for="cod_tecnico" class="form-label">Técnico Responsável</label>
@@ -31,15 +41,21 @@
             </select>
         
         </div>
+        @endif
 
         <div class="mb-3" style="width: 48%">
 
             <label for="cod_solicitante" class="form-label">Solicitante</label>
             <select class="form-select" id="cod_solicitante" name="cod_solicitante">
-                <option selected disabled>Selecione um solicitante...</option>
+
+                <option disabled {{ $isTecnico ? 'selected' : '' }}>Selecione um solicitante...</option>
 
                 @foreach($usuarios as $usuario)
-                    <option value="{{ $usuario->id }}">{{ $usuario->nome_resumido }}</option>
+
+                    <option value="{{ $usuario->id }}" {{ !$isTecnico && $usuario->id == Auth::user()->id ? 'selected' : '' }}>
+                        {{ $usuario->nome_resumido }}
+                    </option>
+
                 @endforeach
 
             </select>
@@ -49,17 +65,15 @@
 
         <div class="mb-3" style="width: 48%">
             <label for="status" class="form-label">Status</label>
-            <select class="form-select" id="status" name="status">
-                <option selected disabled>Selecione um status...</option>
+            <select class="form-select" id="status" name="status" disabled>
                 
                 <option value="1">Novo chamado</option>
-                <option value="2">Em Atendimento</option>
-                <option value="3">Em Validação</option>
-                <option value="4">Finalizado</option>
 
             </select>
         </div>
-        @endif
+
+        @if($isTecnico)
+
         <div class="mb-3" style="width: 48%">
 
             <label for="categoria" class="form-label">Categoria</label>
@@ -76,6 +90,7 @@
             </select>
 
         </div>
+        @endif
 
         <div class="mb-3" style="width: 98%">
 

@@ -16,9 +16,10 @@ return new class extends Migration
             $table->unsignedBigInteger('cod_chamado')->nullable();
             $table->foreign('cod_chamado')->references('id')->on('chamados')->onDelete('restrict');
             $table->integer('status')->default(1);
-            $table->text('c_comentario');
+            $table->text('comentario');
             $table->unsignedBigInteger('cod_usuario_inc');
             $table->foreign('cod_usuario_inc')->references('id')->on('users')->onDelete('restrict');
+            $table->date('d_inclusao');
             $table->timestamps();
         });
     }

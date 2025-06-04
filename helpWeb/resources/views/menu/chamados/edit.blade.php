@@ -100,6 +100,7 @@
                 <option value="2" <?= $chamado->status == 2 ? 'selected' : '' ?>>Em Atendimento</option>
                 <option value="3" <?= $chamado->status == 3 ? 'selected' : '' ?>>Em Validação</option>
                 <option value="4" <?= $chamado->status == 4 ? 'selected' : '' ?>>Finalizado</option>
+                
             </select>
         </div>
 

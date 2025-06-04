@@ -155,7 +155,7 @@
 
         <ul class="nav nav-pills flex-column mb-3">
             <li>
-                <a href="/logout" class="nav-link text-white">
+                <a href="/" class="nav-link text-white">
                     <i class="fa-solid fa-arrow-left"></i> &nbsp; Sair
                 </a>
             </li>

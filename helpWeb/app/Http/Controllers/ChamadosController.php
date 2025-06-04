@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Models\Chamado;
 use App\Models\Categoria;
+use App\Models\HistoricoChamado;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -60,7 +61,19 @@ class ChamadosController extends Controller
 
             $chamado['status'] = 1;
 
+            $chamado['cod_solicitante'] = Auth::user()->id;
+
+            $chamado['cod_usuario_inc'] = Auth::user()->id;
+
             Chamado::create($chamado);
+
+            HistoricoChamado::create([
+                'cod_chamado' => $chamado['id'], // Relaciona o histórico ao chamado criado
+                'status' => 1, // Status inicial do histórico
+                'comentario' => 'Chamado criado', // Comentário inicial (pode ser alterado)
+                'cod_usuario_inc' => Auth::user()->id, // Usuário que criou o histórico
+                'd_inclusao' => now(), // Data de inclusão do histórico
+            ]);
             
             return redirect()->route('chamados.index')->with('sucesso', 'Chamado criado com sucesso!');
 
