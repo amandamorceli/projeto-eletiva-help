@@ -60,7 +60,7 @@ class User extends Authenticatable
         'c_senha' => 'hashed',
     ];
 
-    public function username()
+    public function getAuthIdentifierName()
     {
         return 'c_login';
     }

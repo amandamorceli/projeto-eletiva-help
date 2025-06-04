@@ -24,31 +24,32 @@ Route::post('/login', [AuthController::class, 'login']);
 
 //acesso autenticado
 Route::middleware('auth')->group(function () {
-
+    
     Route::get('/help', function () {
         return view('help');
     });
-
-    Route::post('/logout', [AuthController::class, 'logout']);
-
-    //acessos para usuário técnico
+    
+    Route::get('/logout', [AuthController::class, 'logout']);
+    
+    Route::resource('chamados', ChamadosController::class);
+    
+    //middleware para usuário técnico
     Route::middleware([TecnicoMiddleware::class])->group(function () {
-
+        
         Route::get('/chamados/status/{status}', [ChamadosController::class, 'filtrarPorStatus'])->name('chamados.filtrar');
-
+        
         Route::resource('usuarios', UsersController::class);
-
+        
         Route::get('/chamados/show', function () {
             return view('menu.chamados.show');
         });
     });
-
-    //acesso para usuário comum
+    
+    //middleware para usuário comum
     Route::middleware([UsuarioMiddleware::class])->group(function () {});
-
+    
     Route::get('/', function () {
         return view('help');
     });
-
-    Route::resource('chamados', ChamadosController::class);
+    
 });

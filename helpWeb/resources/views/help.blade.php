@@ -83,24 +83,26 @@
         </a>
         <hr>
 
-
+        @if(Auth::check() && Auth::user()->f_tipo_usuario === 'T')
         <h6 class="text-uppercase text-secondary">Usuários</h6>
         <ul class="nav nav-pills flex-column">
-            @if(Auth::check() && Auth::user()->f_tipo_usuario === 'T')
+            
             <li>
                 <a href="/usuarios/create" class="nav-link text-white">
                     <i class="fas fa-user-plus"></i> &nbsp; Inserir Usuário
                 </a>
             </li>
-            @endif
+            
             <li>
                 <a href="/usuarios/" class="nav-link text-white">
                     <i class="fas fa-users"></i> &nbsp; Usuários
                 </a>
             </li>
         </ul>
+        
 
         <hr>
+        @endif
         @if(Auth::check())
         <h6 class="text-uppercase text-secondary">Chamados</h6>
 
@@ -144,7 +146,7 @@
 
         <ul class="nav nav-pills flex-column mb-3">
             <li>
-                <a href="/sair" class="nav-link text-white">
+                <a href="/logout" class="nav-link text-white">
                     <i class="fa-solid fa-arrow-left"></i> &nbsp; Sair
                 </a>
             </li>
