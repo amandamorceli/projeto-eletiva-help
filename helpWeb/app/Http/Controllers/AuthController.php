@@ -16,16 +16,11 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        // Validação dos campos
-        $request->validate([
-            'login' => 'required',
-            'senha' => 'required'
-        ]);
 
-        // Busca o usuário pelo login
+        $request->validate(['login' => 'required','senha' => 'required']);
+
         $user = User::where('login', $request->login)->first();
 
-        // Verifica se o usuário existe e a senha está correta
         if ($user && Hash::check($request->senha, $user->senha)) {
             
             Auth::login($user);
@@ -34,6 +29,7 @@ class AuthController extends Controller
 
             if ($user->tipo_usuario === 'U') {
                 return redirect()->intended('/help');
+                
             } elseif ($user->tipo_usuario === 'T') {
                 return redirect()->intended('/help');
             }

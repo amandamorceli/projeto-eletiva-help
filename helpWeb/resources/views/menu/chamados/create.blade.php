@@ -17,6 +17,7 @@
     <form method="POST" class="mt-4" style="display: flex; flex-wrap: wrap; justify-content: space-around;" action="/chamados">
         @csrf
 
+        @if(Auth::check() && Auth::user()->tipo_usuario === 'T')
         <div class="mb-3" style="width: 48%">
 
             <label for="cod_tecnico" class="form-label">Técnico Responsável</label>
@@ -28,6 +29,7 @@
                 @endforeach
 
             </select>
+        
         </div>
 
         <div class="mb-3" style="width: 48%">
@@ -43,6 +45,7 @@
             </select>
 
         </div>
+        
 
         <div class="mb-3" style="width: 48%">
             <label for="status" class="form-label">Status</label>
@@ -56,7 +59,7 @@
 
             </select>
         </div>
-
+        @endif
         <div class="mb-3" style="width: 48%">
 
             <label for="categoria" class="form-label">Categoria</label>

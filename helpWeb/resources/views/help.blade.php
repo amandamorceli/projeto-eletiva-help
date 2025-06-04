@@ -82,64 +82,73 @@
             <span class="fs-4"><i class="fas fa-tools"></i> &nbsp; Painel</span>
         </a>
         <hr>
-
-        @if(Auth::check() && Auth::user()->tipo_usuario === 'T')
-        <h6 class="text-uppercase text-secondary">Usuários</h6>
-        <ul class="nav nav-pills flex-column">
-            
-            <li>
-                <a href="/usuarios/create" class="nav-link text-white">
-                    <i class="fas fa-user-plus"></i> &nbsp; Inserir Usuário
-                </a>
-            </li>
-            
-            <li>
-                <a href="/usuarios/" class="nav-link text-white">
-                    <i class="fas fa-users"></i> &nbsp; Usuários
-                </a>
-            </li>
-        </ul>
-        
-
-        <hr>
-        @endif
         @if(Auth::check())
-        <h6 class="text-uppercase text-secondary">Chamados</h6>
 
-        <ul class="nav nav-pills flex-column mb-3">
-            <li class="nav-item">
-                <a href="{{ route('chamados.create') }}" class="nav-link text-white">
-                    <i class="fas fa-plus-circle"></i> &nbsp; Inserir Chamado
-                </a>
-            </li>
             @if(Auth::check() && Auth::user()->tipo_usuario === 'T')
-            <li>
-                <a href="/chamados" class="nav-link text-white">
-                    <i class="fa-solid fa-globe"></i> &nbsp; Todos
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('chamados.filtrar', '1') }}" class="nav-link text-white">
-                    <i class="fas fa-inbox"></i> &nbsp; Novos Chamados
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('chamados.filtrar', '2') }}" class="nav-link text-white">
-                    <i class="fas fa-calendar-check"></i> &nbsp; Em atendimento
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('chamados.filtrar', '3') }}" class="nav-link text-white">
-                    <i class="fas fa-check-circle"></i> &nbsp; Em Validação
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('chamados.filtrar', '4') }}" class="nav-link text-white">
-                    <i class="fa-solid fa-check"></i> &nbsp; Finalizados
-                </a>
-            </li>
+                <h6 class="text-uppercase text-secondary">Usuários</h6>
+                <ul class="nav nav-pills flex-column">
+                    
+                    <li>
+                        <a href="/usuarios/create" class="nav-link text-white">
+                            <i class="fas fa-user-plus"></i> &nbsp; Inserir Usuário
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="/usuarios/" class="nav-link text-white">
+                            <i class="fas fa-users"></i> &nbsp; Usuários
+                        </a>
+                    </li>
+                </ul>
+                <hr>
             @endif
-        </ul>
+        
+            <h6 class="text-uppercase text-secondary">Chamados</h6>
+
+            <ul class="nav nav-pills flex-column mb-3">
+                <li class="nav-item">
+                    <a href="{{ route('chamados.create') }}" class="nav-link text-white">
+                        <i class="fas fa-plus-circle"></i> &nbsp; Inserir Chamado
+                    </a>
+                </li>
+                
+                @if(Auth::check() && Auth::user()->tipo_usuario === 'U')
+                    <li>
+                        <a href="{{ route('meuschamados') }}" class="nav-link text-white">
+                            <i class="fas fa-inbox"></i> &nbsp; Meus Chamados
+                        </a>
+                    </li>
+                @endif
+
+                @if(Auth::check() && Auth::user()->tipo_usuario === 'T')
+                    <li>
+                        <a href="/chamados" class="nav-link text-white">
+                            <i class="fa-solid fa-globe"></i> &nbsp; Todos
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('chamados.filtrar', '1') }}" class="nav-link text-white">
+                            <i class="fas fa-inbox"></i> &nbsp; Novos Chamados
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('chamados.filtrar', '2') }}" class="nav-link text-white">
+                            <i class="fas fa-calendar-check"></i> &nbsp; Em atendimento
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('chamados.filtrar', '3') }}" class="nav-link text-white">
+                            <i class="fas fa-check-circle"></i> &nbsp; Em Validação
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('chamados.filtrar', '4') }}" class="nav-link text-white">
+                            <i class="fa-solid fa-check"></i> &nbsp; Finalizados
+                        </a>
+                    </li>
+                @endif
+                
+            </ul>
         @endif
 
         <hr>

@@ -33,23 +33,18 @@ Route::middleware('auth')->group(function () {
     
     Route::resource('chamados', ChamadosController::class);
     
-    //middleware para usuário técnico
+    //acesso para usuário técnico
     Route::middleware([TecnicoMiddleware::class])->group(function () {
-        
-        Route::get('/chamados/status/{status}', [ChamadosController::class, 'filtrarPorStatus'])->name('chamados.filtrar');
         
         Route::resource('usuarios', UsersController::class);
         
-        Route::get('/chamados/show', function () {
-            return view('menu.chamados.show');
-        });
+        Route::get('/chamados/status/{status}', [ChamadosController::class, 'filtrarPorStatus'])->name('chamados.filtrar');
     });
     
-    //middleware para usuário comum
-    Route::middleware([UsuarioMiddleware::class])->group(function () {});
-    
-    Route::get('/', function () {
-        return view('help');
+    //acesso para usuário comum
+    Route::middleware([UsuarioMiddleware::class])->group(function () {
+
+        Route::get('/meuschamados',[ChamadosController::class, 'filtrarPorUsuario'])->name('meuschamados');
     });
     
 });

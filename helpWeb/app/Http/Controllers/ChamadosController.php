@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use App\Models\Chamado;
 use App\Models\Categoria;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class ChamadosController extends Controller
 {
@@ -22,7 +23,14 @@ class ChamadosController extends Controller
 
         $categorias = Categoria::all();
 
-        $chamados = Chamado::get();
+        $user = Auth::user();
+
+        if ($user->tipo_usuario === 'T') {
+            $chamados = Chamado::all();
+
+        } else {
+            $chamados = Chamado::where('cod_solicitante', $user->id)->get();
+        }
         
         return view('menu.chamados.index', compact("chamados", "tecnicos", "usuarios", "categorias"));
     }
@@ -133,12 +141,16 @@ class ChamadosController extends Controller
         try {
             $chamado = Chamado::findOrFail($id);
             $chamado->delete();
+
             return redirect()->route('chamados.index')->with('sucesso', 'Chamado excluído com sucesso!');
+
         } catch (Exception $e) {
+
             Log::error("Erro ao excluir o chamado:" . $e->getMessage(), [
                 'stack' => $e->getTraceAsString(),
                 'chamado_id' => $id
             ]);
+            
             return redirect()->route('chamados.index')->with('erro', 'Erro ao excluir o chamado!');
         }
     }
@@ -149,5 +161,14 @@ class ChamadosController extends Controller
 
         return view('menu.chamados.index', compact('chamados', 'status'));
     }
+
+    public function filtrarPorUsuario()
+    {
+        $user = Auth::user();
+
+        $chamados = Chamado::where('cod_solicitante', $user->id)->get();
+
+        return view('menu.chamados.index', compact('chamados'));
+    }   
 
 }

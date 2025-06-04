@@ -61,7 +61,7 @@ class UsersController extends Controller
 
             $dados['cep'] = str_replace('-', '', $dados['cep']);
 
-            $dados['senha'] = 'help$' . date('Y') . '$';
+            $dados['senha'] = Hash::make('help$' . date('Y') . '$');
 
             User::create($dados);
             
