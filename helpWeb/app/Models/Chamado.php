@@ -17,7 +17,7 @@ class Chamado extends Model
         'descricao',
         'status',
         'categoria',
-        // 'cod_usuario_inc',
+        'cod_usuario_inc',
         // 'cod_usuario_alt',
         'd_inclusao'
     ];
@@ -45,6 +45,11 @@ class Chamado extends Model
     public function categoriaDoChamado()
     {
         return $this->belongsTo(Categoria::class, 'categoria');
+    }
+
+    public function historicos()
+    {
+        return $this->hasMany(HistoricosChamado::class, 'cod_chamado');
     }
 
     public function getStatusNomeAttribute()

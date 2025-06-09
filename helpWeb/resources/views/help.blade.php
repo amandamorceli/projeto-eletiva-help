@@ -78,7 +78,7 @@
     <!-- menu tecnico -->
     <!-- Sidebar -->
     <div class="sidebar">
-        <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+        <a href="/help" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <span class="fs-4"><i class="fas fa-tools"></i> &nbsp; Painel</span>
         </a>
         <hr>
@@ -152,10 +152,9 @@
         @endif
 
         <hr>
-
         <ul class="nav nav-pills flex-column mb-3">
             <li>
-                <a href="/" class="nav-link text-white">
+                <a href="/logout" class="nav-link text-white">
                     <i class="fa-solid fa-arrow-left"></i> &nbsp; Sair
                 </a>
             </li>

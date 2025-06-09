@@ -25,9 +25,24 @@ class HistoricoChamadoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $chamadoId)
     {
-        //
+        $request->validate([
+            'comentario' => 'required|string',
+        ]);
+
+        $historico = HistoricosChamado::create([
+            'cod_chamado' => $chamadoId,
+            'status' => $request->status,
+            'comentario' => $request->comentario,
+            'cod_usuario_inc' => auth()->id(),
+        ]);
+
+        // return response()->json([
+        //     'message' => 'Histórico registrado com sucesso.',
+        //     'historico' => $historico
+        // ]);
+        return redirect()->route('chamados.index')->with('sucesso', 'Histórico criado com sucesso!');
     }
 
     /**

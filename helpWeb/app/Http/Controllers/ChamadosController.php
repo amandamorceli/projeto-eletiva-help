@@ -94,7 +94,7 @@ class ChamadosController extends Controller
      */
     public function show(string $id)
     {
-        $chamado = Chamado::findOrFail($id);
+        Chamado::with('historicos.usuarioInclusao')->findOrFail($id);
 
         $tecnicos = User::where('tipo_usuario', 'T')->get();
 

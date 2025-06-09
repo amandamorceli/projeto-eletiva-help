@@ -15,11 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('cod_chamado')->nullable();
             $table->foreign('cod_chamado')->references('id')->on('chamados')->onDelete('restrict');
-            $table->integer('status')->default(1);
-            $table->text('comentario');
+            $table->enum('tipo', ['mensagem', 'proposta', 'atribuição'])->default('mensagem');
+            $table->integer('status')->nullable();
+            $table->text('comentario')->nullable();
             $table->unsignedBigInteger('cod_usuario_inc');
             $table->foreign('cod_usuario_inc')->references('id')->on('users')->onDelete('restrict');
-            $table->date('d_inclusao');
+            $table->date('d_inclusao')->useCurrent();
             $table->timestamps();
         });
     }

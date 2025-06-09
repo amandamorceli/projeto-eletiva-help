@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
         $this->call(UserSeeder::class);
 
         $this->call(ChamadoSeeder::class);
+
+        $this->call(HistoricosChamadoSeeder::class);
     }
     
 }
