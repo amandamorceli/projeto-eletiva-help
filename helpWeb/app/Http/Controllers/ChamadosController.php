@@ -119,7 +119,9 @@ class ChamadosController extends Controller
 
         $categorias = Categoria::all();
 
-        return view("menu.chamados.edit", compact('chamado', 'tecnicos', 'usuarios', 'categorias'));
+        $historicos = HistoricoChamado::where('cod_chamado', $chamado->id)->orderBy('d_inclusao', 'desc')->get();
+
+        return view("menu.chamados.edit", compact('chamado', 'tecnicos', 'usuarios', 'categorias', 'historicos'));
     }
 
     /**

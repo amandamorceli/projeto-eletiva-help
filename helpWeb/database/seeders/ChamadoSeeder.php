@@ -21,6 +21,7 @@ class ChamadoSeeder extends Seeder // renomeie a classe para evitar conflito
             'categoria' => 1,
             'cod_solicitante' => 1,
             'cod_tecnico' => 2,
+            'cod_usuario_inc' => 1
             // 'd_inclusao' => Carbon::now(),
         ]);
 
@@ -31,6 +32,7 @@ class ChamadoSeeder extends Seeder // renomeie a classe para evitar conflito
             'categoria' => 2,
             'cod_solicitante' => 1,
             'cod_tecnico' => 2,
+            'cod_usuario_inc' => 1
             // 'd_inclusao' => Carbon::now()->subDays(1),
         ]);
 
@@ -41,6 +43,7 @@ class ChamadoSeeder extends Seeder // renomeie a classe para evitar conflito
             'categoria' => 3,
             'cod_solicitante' => 1,
             'cod_tecnico' => 2,
+            'cod_usuario_inc' => 1
             // 'd_inclusao' => Carbon::now()->subDays(2),
         ]);
 
@@ -51,6 +54,7 @@ class ChamadoSeeder extends Seeder // renomeie a classe para evitar conflito
             'categoria' => 4,
             'cod_solicitante' => 1,
             'cod_tecnico' => 2,
+            'cod_usuario_inc' => 1
             // 'd_inclusao' => Carbon::now()->subDays(3),
         ]);
     }
