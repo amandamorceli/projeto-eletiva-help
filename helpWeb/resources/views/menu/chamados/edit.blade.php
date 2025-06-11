@@ -45,9 +45,42 @@
         width: 40%;
     }
 
+    .botoesAcao{
+        width: 100%;
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        flex-direction: row;
+
+        & button{
+            padding: 10px 15px;
+            color: #fff;
+            background-color: #4e59dd;
+            border: none;
+
+            margin: 0 10px;
+
+            border-radius: 10px;
+
+            transition: all ease-in-out 0.3s;
+
+            &:hover{
+                cursor: pointer;
+                background-color: #2e347b;
+            }
+        }
+    }
+
 </style>
 
 @section('conteudo')
+
+@php
+
+    $isTecnico = Auth::user()->tipo_usuario === 'T';
+
+@endphp
 
 <div class="form-container" style="width: 98%;">
 
@@ -68,6 +101,26 @@
 
         <!-- Aba Formulário -->
         <div class="tab-pane fade show active" id="form" role="tabpanel">
+
+            @if($isTecnico)
+            <div class="botoesAcao">
+
+
+                <form action="{{ route('chamados.update', ['id' => $chamado->id, 'novoStatus' => 3]) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <button class="botaoEnviaValidacao" type="submit"> Enviar Para Validação &nbsp; <i class="fas fa-check"></i> </button>
+                </form>
+
+                <form action="{{ route('chamados.update', ['id' => $chamado->id, 'novoStatus' => 2]) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <button class="botaoEnviaValidacao" type="submit">Iniciar Chamado &nbsp; <i class="fas fa-play"></i></button>
+                </form>
+
+
+            </div>
+            @endif
 
             <form method="POST" class="mt-4" style="display: flex; flex-wrap: wrap; justify-content: space-around;" action="/chamados/{{ $chamado->id }}">
                 @csrf
@@ -177,7 +230,7 @@
                 </thead>
 
                 <tbody>
-                    @forelse($historicos as $h)
+                @forelse($historicos as $h)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
 
@@ -195,7 +248,7 @@
 
                         <td>{{ $h->usuario->name ?? 'Usuário desconhecido' }}</td>
 
-                        <td style="text-align: center;">{{ \Carbon\Carbon::parse($h->d_inclusao)->format('d/m/Y') }}</td>
+                        <td style="text-align: center;">{{ $h->d_inclusao }}</td>
 
                     </tr>
                     

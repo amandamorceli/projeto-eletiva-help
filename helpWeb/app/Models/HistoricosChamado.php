@@ -13,7 +13,8 @@ class HistoricosChamado extends Model
     protected $fillable = ['cod_chamado'
     , 'status'
     , 'comentario'
-    , 'cod_usuario_inc'
+    , 'cod_usuario_inc',
+    'd_inclusao'
     ];
 
     public function usuarioInclusao()

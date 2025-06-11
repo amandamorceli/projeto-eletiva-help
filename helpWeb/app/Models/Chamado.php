@@ -17,7 +17,7 @@ class Chamado extends Model
         'descricao',
         'status',
         'categoria',
-        // 'cod_usuario_inc',
+        'cod_usuario_inc',
         // 'cod_usuario_alt',
         'd_inclusao'
     ];
