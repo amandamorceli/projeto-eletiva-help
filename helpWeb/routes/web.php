@@ -38,6 +38,8 @@ Route::middleware('auth')->group(function () {
         
         Route::resource('usuarios', UsersController::class);
         
+        Route::put('/chamados/update/{id}/{novoStatus}', [ChamadosController::class, 'update'])->name('chamados.update');
+
         Route::get('/chamados/status/{status}', [ChamadosController::class, 'filtrarPorStatus'])->name('chamados.filtrar');
     });
     

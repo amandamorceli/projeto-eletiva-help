@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Models\Chamado;
 use App\Models\Categoria;
-use App\Models\HistoricoChamado;
+use App\Models\HistoricosChamado;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -65,9 +65,9 @@ class ChamadosController extends Controller
 
             $chamado['cod_usuario_inc'] = Auth::user()->id;
 
-            Chamado::create($chamado);
+            $chamado = Chamado::create($chamado);
 
-            HistoricoChamado::create([
+            HistoricosChamado::create([
                 'cod_chamado' => $chamado['id'], // Relaciona o histórico ao chamado criado
                 'status' => 1, // Status inicial do histórico
                 'comentario' => 'Chamado criado', // Comentário inicial (pode ser alterado)
@@ -101,8 +101,10 @@ class ChamadosController extends Controller
         $usuarios = User::all();
 
         $categorias = Categoria::all();
+        
+        $historicos = HistoricosChamado::where('cod_chamado', $chamado->id)->orderBy('d_inclusao', 'desc')->get();
 
-        return view("menu.chamados.show", compact('chamado', 'tecnicos', 'usuarios', 'categorias'));
+        return view("menu.chamados.show", compact('chamado', 'tecnicos', 'usuarios', 'categorias', 'historicos'));
     }
 
     /**
@@ -119,18 +121,32 @@ class ChamadosController extends Controller
 
         $categorias = Categoria::all();
 
-        return view("menu.chamados.edit", compact('chamado', 'tecnicos', 'usuarios', 'categorias'));
+        $historicos = HistoricosChamado::where('cod_chamado', $chamado->id)->orderBy('d_inclusao', 'desc')->get();
+
+        return view("menu.chamados.edit", compact('chamado', 'tecnicos', 'usuarios', 'categorias', 'historicos'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id, int $novoStatus = null)
     {
         try {
             $chamado = Chamado::findOrFail($id);
 
+            $chamado['status'] = $novoStatus;
+
             $chamado->update($request->all());
+
+            if($novoStatus){
+                HistoricosChamado::create([
+                    'cod_chamado' => $id, // Relaciona o histórico ao chamado criado
+                    'status' => $novoStatus, // Status inicial do histórico
+                    'comentario' => 'Status alterado', // Comentário inicial (pode ser alterado)
+                    'cod_usuario_inc' => Auth::user()->id, // Usuário que criou o histórico
+                    'd_inclusao' => now(), // Data de inclusão do histórico
+                ]);
+            }
 
             return redirect()->route('chamados.index')->with('sucesso', 'Chamado alterado com sucesso!');
 

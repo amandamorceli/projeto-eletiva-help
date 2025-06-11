@@ -13,9 +13,8 @@ class HistoricosChamado extends Model
     protected $fillable = ['cod_chamado'
     , 'status'
     , 'comentario'
-    , 'cod_usuario_inc'
-    ,'tipo' //mensagem, atualização.. 
-    ,'d_inclusao'
+    , 'cod_usuario_inc',
+    'd_inclusao'
     ];
 
     public function usuarioInclusao()
@@ -23,13 +22,4 @@ class HistoricosChamado extends Model
         return $this->belongsTo(User::class, 'cod_usuario_inc');
     }
 
-    public function chamado()
-    {
-        return $this->belongsTo(Chamado::class, 'cod_chamado');
-    }
-
-
-    // protected $casts = [
-    //     'status' => StatusChamado::class,
-    // ];
 }

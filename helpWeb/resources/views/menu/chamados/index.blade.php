@@ -29,6 +29,13 @@
     }
 </style>
 @section('conteudo')
+
+@php
+
+    $isTecnico = Auth::user()->tipo_usuario === 'T';
+
+@endphp
+
 <h3 class="mb-4">Lista de Chamados</h3>
 
 <div class="table-responsive" style="width: 90%;">
@@ -55,8 +62,9 @@
                     <span class="icones">
 
                         <a href="/chamados/{{ $chamado->id }}"><i class="fa-solid fa-eye"></i></a>
-
+                        @if($isTecnico)
                         <a href="/chamados/{{ $chamado->id }}/edit"><i class='fas fa-edit'></i></a>
+                        @endif
 
                     </span>
 

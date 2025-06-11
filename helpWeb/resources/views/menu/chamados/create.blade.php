@@ -46,7 +46,7 @@ use Illuminate\Support\Facades\Auth;
         <div class="mb-3" style="width: 48%">
 
             <label for="cod_solicitante" class="form-label">Solicitante</label>
-            <select class="form-select" id="cod_solicitante" name="cod_solicitante">
+            <select class="form-select" id="cod_solicitante" name="cod_solicitante" disabled>
 
                 <option disabled {{ $isTecnico ? 'selected' : '' }}>Selecione um solicitante...</option>
 
