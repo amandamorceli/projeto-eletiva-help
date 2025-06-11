@@ -129,7 +129,7 @@ class ChamadosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id, int $novoStatus)
+    public function update(Request $request, string $id, int $novoStatus = null)
     {
         try {
             $chamado = Chamado::findOrFail($id);
@@ -137,6 +137,16 @@ class ChamadosController extends Controller
             $chamado['status'] = $novoStatus;
 
             $chamado->update($request->all());
+
+            if($novoStatus){
+                HistoricosChamado::create([
+                    'cod_chamado' => $id, // Relaciona o histórico ao chamado criado
+                    'status' => $novoStatus, // Status inicial do histórico
+                    'comentario' => 'Status alterado', // Comentário inicial (pode ser alterado)
+                    'cod_usuario_inc' => Auth::user()->id, // Usuário que criou o histórico
+                    'd_inclusao' => now(), // Data de inclusão do histórico
+                ]);
+            }
 
             return redirect()->route('chamados.index')->with('sucesso', 'Chamado alterado com sucesso!');
 

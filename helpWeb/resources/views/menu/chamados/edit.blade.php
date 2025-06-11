@@ -202,8 +202,6 @@
 
                 </div>
 
-                <input type="hidden" name="cod_usuario_inc" value="1">
-
                 <div class="botoes">
 
                     <button type="submit" class="btn btn-envia mt-3">Salvar</button>
