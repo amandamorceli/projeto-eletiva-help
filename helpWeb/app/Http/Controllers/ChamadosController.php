@@ -28,6 +28,7 @@ class ChamadosController extends Controller
 
         if ($user->tipo_usuario === 'T') {
             $chamados = Chamado::all();
+            // $chamados = Chamado::all();
 
         } else {
             $chamados = Chamado::where('cod_solicitante', $user->id)->get();

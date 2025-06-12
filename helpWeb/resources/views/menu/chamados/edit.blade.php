@@ -244,9 +244,9 @@
 
                         <td>{{ $h->comentario }}</td>
 
-                        <td>{{ $h->usuario->name ?? 'Usuário desconhecido' }}</td>
+                        <td>{{ $h->usuarioInclusao->nome_resumido }}</td>
 
-                        <td style="text-align: center;">{{ $h->d_inclusao }}</td>
+                        <td style="text-align: center;">{{ date('d/m/Y', strtotime($h->d_inclusao)) }}</td>
 
                     </tr>
                     
